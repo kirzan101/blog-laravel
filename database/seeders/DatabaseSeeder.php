@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             ItemSeeder::class,
             AccountabilitySeeder::class,
             StockSeeder::class,
+            DepartmentSeeder::class,
         ]);
     }
 }

@@ -22,7 +22,8 @@ class DepartmentFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'description.required' => 'edited na ang kailangan ito',
+            'description.min' => 'nalagyan na, 2 pataas dapat'
         ];
     }
 }

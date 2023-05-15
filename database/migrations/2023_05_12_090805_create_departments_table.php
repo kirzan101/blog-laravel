@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('code');
             $table->string('contact_number');
             $table->string('description');
-            $table->unsignedBigInteger('post_id');
             $table->timestamps();
         });
     }
