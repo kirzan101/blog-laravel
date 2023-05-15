@@ -63,7 +63,7 @@ class PostController extends Controller
             ]);
 
             return new PostResource($post);
-        } catch(\Exception $e)
+        } catch(Exception $e)
         {
             return ['error' => 'has error - ' . $e];
         }
