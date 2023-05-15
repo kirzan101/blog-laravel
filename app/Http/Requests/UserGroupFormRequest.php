@@ -22,16 +22,9 @@ class UserGroupFormRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required|min:2',
+            'code' => 'required|min:2',
             'description' => 'required|min:2',
-        ];
-    }
-
-
-    public function messages()
-    {
-        return [
-            'description.required' => 'kailangan ito',
-            'description.min' => '2 pataas dapat'
         ];
     }
 }
