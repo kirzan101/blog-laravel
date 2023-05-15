@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('code');
+            $table->string('contact_number');
+            $table->string('description');
+            $table->unsignedBigInteger('post_id');
             $table->timestamps();
         });
     }
