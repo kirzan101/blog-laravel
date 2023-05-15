@@ -13,7 +13,18 @@ class Post extends Model
     protected $fillable = [
         'id',
         'description',
+        'teacher_id'
     ];
+
+    /**
+     * associate post to teacher
+     *
+     * @return object
+     */
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
 
     /**
      * get the list of comments associated to Post

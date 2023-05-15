@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/posts', PostController::class, ['except' => ['create', 'edit']]);
 Route::resource('/comments', CommentController::class, ['except' => ['create', 'edit']]);
+Route::resource('/teachers', TeacherController::class, ['except' => ['create', 'edit']]);
