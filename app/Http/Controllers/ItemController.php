@@ -33,6 +33,10 @@ class ItemController extends Controller
         // create record`
         $item = Item::create([
             'description' => $request->description,
+            'brand' => $request->description,
+            'model' => $request->description,
+            'department_id' => $request->description,
+            'supplier_id' => $request->description,
         ]);
 
         return new ItemResource($item);
