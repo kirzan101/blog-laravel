@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostFormRequest;
 use App\Http\Resources\PostResource;
 use Illuminate\Http\Request;
 use App\Models\Post;
@@ -24,8 +25,13 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostFormRequest $request)
     {
+
+        // $request->validate([
+        //     'description' => 'required|max:255',
+        // ]);
+
         // create record`
         $post = Post::create([
             'description' => $request->description
