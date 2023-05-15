@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             AccountabilitySeeder::class,
             StockSeeder::class,
             DepartmentSeeder::class,
+            TeacherSeeder::class,
         ]);
     }
 }
