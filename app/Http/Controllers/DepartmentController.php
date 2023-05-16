@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DepartmentFormRequest;
 use App\Http\Resources\DepartmentResource;
-use App\Models\Department;
 use Illuminate\Http\Request;
-use Exception;
+use App\Models\Department;
 
 
 class DepartmentController extends Controller
@@ -17,10 +16,10 @@ class DepartmentController extends Controller
     public function index()
     {
         //all record
-        $departments = Department::all();//select * from department;
+        $department = Department::all();//select * from department;
         
         // return $posts;
-        return DepartmentResource::collection($departments); // for 2 or more records
+        return DepartmentResource::collection($department); // for 2 or more records
     }
 
     /**
@@ -35,14 +34,14 @@ class DepartmentController extends Controller
         // ]);
 
         // create record`
-        $departments = Department::create([
+        $department = Department::create([
             'name' => $request->name,
             'code' => $request->code,
             'contact_number' => $request->contact_number,
-            'description' => $request->description,
+            'description' => $request->description
         ]);
 
-        return new DepartmentResource($departments);
+        return new DepartmentResource($department);
     }
 
     /**
@@ -58,21 +57,21 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Department $departments)
+    public function update(Request $request, Department $department)
     {
         try
         {
             // $departments = Department::find($id);
 
-            $departments = tap($departments)->update([
+            $department = tap($department)->update([
                 'name' => $request->name,
                 'code' => $request->code,
                 'contact_number' => $request->contact_number,
                 'description' => $request->description,
             ]);
 
-            return new DepartmentResource($departments);
-        } catch(Exception $e)
+            return new DepartmentResource($department);
+        } catch(\Exception $e)
         {
             return ['error' => 'has error - ' . $e];
         }
@@ -81,7 +80,7 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Department $stock)
     {
         //delete record
     }

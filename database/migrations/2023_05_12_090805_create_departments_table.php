@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('code');
-            $table->integer('contact_number');
+            $table->bigInteger('contact_number');
             $table->string('description');
             $table->timestamps();
             

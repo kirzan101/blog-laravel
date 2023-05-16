@@ -18,7 +18,7 @@ class DepartmentSeeder extends Seeder
     [
         'name' => 'A1',
         'code' => '12345672',
-        'contact_number' => '12345',
+        'contact_number' => '09564738323',
         'description' => 'test4',
 
     ],
@@ -26,14 +26,14 @@ class DepartmentSeeder extends Seeder
     [
         'name' => 'A2',
         'code' => '7654322',
-        'contact_number' => '12345',
+        'contact_number' => '09564738325',
         'description' => 'test4',
 
     ],
     [
         'name' => 'a3',
         'code' => '7654322',
-        'contact_number' => '12345',
+        'contact_number' => '09564738322',
         'description' => 'test4',
 
     ]
