@@ -17,10 +17,16 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'e
-        
+
         $this->call([
             PostSeeder::class,
             CommentSeeder::class,
+            SupplierSeeder::class,
+            EmployeeSeeder::class,
+            UserGroupSeeder::class,
+            ItemSeeder::class,
+            AccountabilitySeeder::class,
+            StockSeeder::class,
         ]);
     }
 }

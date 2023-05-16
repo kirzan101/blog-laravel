@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostFormRequest;
 use App\Http\Resources\PostResource;
-use Illuminate\Http\Request;
 use App\Models\Post;
-use Exception;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -16,8 +15,8 @@ class PostController extends Controller
     public function index()
     {
         //all record
-        $posts = Post::all();//select * from posts;
-        
+        $posts = Post::all(); //select * from posts;
+
         // return $posts;
         return PostResource::collection($posts); // for 2 or more records
     }
@@ -34,7 +33,7 @@ class PostController extends Controller
 
         // create record`
         $post = Post::create([
-            'description' => $request->description
+            'description' => $request->description,
         ]);
 
         return new PostResource($post);
@@ -54,18 +53,17 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        try
-        {
+        try {
             $post = Post::find($id);
 
             $post = tap($post)->update([
-                'description' => $request->description
+                'description' => $request->description,
             ]);
 
             return new PostResource($post);
-        } catch(Exception $e)
-        {
-            return ['error' => 'has error - ' . $e];
+
+        } catch (\Exception $e) {
+            return ['error' => 'has error - '.$e];
         }
     }
 

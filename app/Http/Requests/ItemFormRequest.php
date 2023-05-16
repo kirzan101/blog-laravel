@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostFormRequest extends FormRequest
+class ItemFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,7 +17,7 @@ class PostFormRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-      @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     *@return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
@@ -28,6 +28,5 @@ class PostFormRequest extends FormRequest
             'department_id' => 'required',
             'supplier_id' => 'required',
         ];
-
     }
 }
