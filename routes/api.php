@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserGroupController;
+use App\Http\Controllers\AccountabilityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,4 @@ Route::resource('/comments', CommentController::class, ['except' => ['create', '
 Route::resource('/suppliers', SupplierController::class, ['except' => ['create', 'edit']]);
 Route::resource('/employees', EmployeeController::class, ['except' => ['create', 'edit']]);
 Route::resource('/usergroup', UserGroupController::class, ['except' => ['create', 'edit']]);
+Route::resource('/accountability', AccountabilityController::class, ['except' => ['create', 'edit']]);
