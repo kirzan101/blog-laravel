@@ -9,6 +9,7 @@ use App\Http\Controllers\UserGroupController;
 use App\Http\Controllers\AccountabilityController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,4 @@ Route::resource('/usergroup', UserGroupController::class, ['except' => ['create'
 Route::resource('/accountability', AccountabilityController::class, ['except' => ['create', 'edit']]);
 Route::resource('/stocks', StockController::class, ['except' => ['create', 'edit']]);
 Route::resource('/departments', DepartmentController::class, ['except' => ['create', 'edit']]);
+Route::resource('/teachers', TeacherController::class, ['except' => ['create', 'edit']]);
