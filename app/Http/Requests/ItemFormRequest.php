@@ -25,8 +25,8 @@ class ItemFormRequest extends FormRequest
             'description' => 'required|min:2',
             'brand' => 'required|min:2',
             'model' => 'required|min:2',
-            'department_id' => 'required|min:2',
-            'supplier_id' => 'required|min:2',
+            'department_id' => 'required',
+            'supplier_id' => 'required',
         ];
     }
 }
