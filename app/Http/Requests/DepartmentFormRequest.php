@@ -22,8 +22,10 @@ class DepartmentFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'description.required' => 'edited na ang kailangan ito',
-            'description.min' => 'nalagyan na, 2 pataas dapat'
+            'name' => 'required|min:2',
+            'code' => 'required|min:2',
+            'contact_number' => 'required|min:2',
+            'description' => 'required|min:2',
         ];
     }
 }

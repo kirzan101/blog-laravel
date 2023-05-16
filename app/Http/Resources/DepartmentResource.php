@@ -20,6 +20,8 @@ class DepartmentResource extends JsonResource
                 'code' => $this->code,
                 'contact_number' => $this->contact_number,
                 'description' => $this->description,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at
                 //'comments' => $this->comments//CommentResource::collection($this->comments),
             ];
         }

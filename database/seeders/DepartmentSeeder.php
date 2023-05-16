@@ -13,39 +13,35 @@ class DepartmentSeeder extends Seeder
      */
     public function run(): void
     {
-         // Department::create([
-        //     'description' => 'test2'
-        // ]);
 
-    
-$array =[
+        $array =[
     [
-        'name'=> 'A1',
-        'code'=> 'test2',
-        'contact_number'=> '12345',
-        'description'=> 'test4',
+        'name' => 'A1',
+        'code' => '12345672',
+        'contact_number' => '12345',
+        'description' => 'test4',
 
     ],
 
     [
-        'name'=> 'A2',
-        'code'=> 'test2',
-        'contact_number'=> '12345',
-        'description'=> 'test4',
+        'name' => 'A2',
+        'code' => '7654322',
+        'contact_number' => '12345',
+        'description' => 'test4',
 
     ],
     [
-        'name'=> 'a3',
-        'code'=> 'test2',
-        'contact_number'=> '12345',
-        'description'=> 'test4',
+        'name' => 'a3',
+        'code' => '7654322',
+        'contact_number' => '12345',
+        'description' => 'test4',
 
     ]
     ];
 
-        foreach($array as $arr)
+        foreach($array as $array)
         {
-            Department::create($arr);
+            Department::create($array);
         }
     }
 }

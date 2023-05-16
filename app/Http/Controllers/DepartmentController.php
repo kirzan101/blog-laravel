@@ -8,6 +8,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Exception;
 
+
 class DepartmentController extends Controller
 {
     /**
@@ -16,10 +17,10 @@ class DepartmentController extends Controller
     public function index()
     {
         //all record
-        $Department = Department::all();//select * from department;
+        $departments = Department::all();//select * from department;
         
         // return $posts;
-        return DepartmentResource::collection($Department); // for 2 or more records
+        return DepartmentResource::collection($departments); // for 2 or more records
     }
 
     /**
@@ -29,47 +30,48 @@ class DepartmentController extends Controller
     {
 
         // $request->validate([
+
         //     'description' => 'required|max:255',
         // ]);
 
         // create record`
-        $Department = Department::create([
-            'id' => (int) $request->getKey(),
+        $departments = Department::create([
             'name' => $request->name,
             'code' => $request->code,
             'contact_number' => $request->contact_number,
-            'description' => $request->description
+            'description' => $request->description,
         ]);
-        return new DepartmentResource($Department);
+
+        return new DepartmentResource($departments);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Department $Department)
+    public function show(Department $department)
     {
+        // dd($department);
         // return $post;
-        return new DepartmentResource($Department); //for 1 only
+        return new DepartmentResource($department); //for 1 only
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Department $departments)
     {
         try
         {
-            $Department = Department::find($id);
+            // $departments = Department::find($id);
 
-            $Department = tap($Department)->update([
-                'id' => (int) $request->getKey(),
+            $departments = tap($departments)->update([
                 'name' => $request->name,
                 'code' => $request->code,
                 'contact_number' => $request->contact_number,
-                'description' => $request->description
+                'description' => $request->description,
             ]);
 
-            return new DepartmentResource($Department);
+            return new DepartmentResource($departments);
         } catch(Exception $e)
         {
             return ['error' => 'has error - ' . $e];

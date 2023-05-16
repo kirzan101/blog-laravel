@@ -9,11 +9,11 @@ class Department extends Model
 {
     use HasFactory;
 
-    protected $fillable =
-    [
+    protected $fillable = [
         'name', 
         'code', 
         'contact_number', 
         'description'
     ];
+    
 }
