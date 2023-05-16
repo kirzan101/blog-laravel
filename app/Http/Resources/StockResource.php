@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class StockResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,13 @@ class PostResource extends JsonResource
     {
         return [
             'id' => (int) $this->getKey(),
-            'description' => $this->description,
+            'code' => $this->code,
+            'serial_number' => $this->serial_number,
+            'manufacture_date' => $this->manufacture_date,
+            'item_id' => $this->item_id,
+            'supplier_id' => $this->supplier_id,
             'created_at' => $this->created_at,
             'updated_by' => $this->updated_at,
-            //'comments' => $this->comments//CommentResource::collection($this->comments),
         ];
     }
 }

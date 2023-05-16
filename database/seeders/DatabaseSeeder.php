@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             EmployeeSeeder::class,
             UserGroupSeeder::class,
             ItemSeeder::class,
-            AccountabilitySeeder::class
+            AccountabilitySeeder::class,
+            StockSeeder::class,
         ]);
     }
 }
