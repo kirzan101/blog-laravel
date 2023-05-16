@@ -34,8 +34,8 @@ class UserGroupController extends Controller
 
         // create record`
         $usergroup = UserGroup::create([
-            'name' => $request -> name,
-            'code' => $request -> code,
+            'name' => $request->name,
+            'code' => $request->code,
             'description' => $request->description
         ]);
 
@@ -47,7 +47,7 @@ class UserGroupController extends Controller
      */
     public function show(UserGroup $usergroup)
     {
-        // return $post;
+        // return $usergroup;
         return new UserGroupResource($usergroup); //for 1 only
     }
 

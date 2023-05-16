@@ -21,18 +21,18 @@ class UserGroupSeeder extends Seeder
         $array = [
           [
             'name' => 'laurence',
-            'code' => 'test',
-            'description' => 'test',
+            'code' => 'test1',
+            'description' => 'test', 
           ]  ,
 
           [
             'name' => 'laurence',
-            'code' => 'test',
+            'code' => 'test2',
             'description' => 'test',
           ]  ,
           [
             'name' => 'laurence',
-            'code' => 'test',
+            'code' => 'test3',
             'description' => 'test',
           ]  
         ];
