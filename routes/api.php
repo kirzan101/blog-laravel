@@ -25,4 +25,4 @@ use Illuminate\Support\Facades\Route;
 Route::resource('/posts', PostController::class, ['except' => ['create', 'edit']]);
 Route::resource('/comments', CommentController::class, ['except' => ['create', 'edit']]);
 Route::resource('/suppliers', SupplierController::class, ['except' => ['create', 'edit']]);
-Route::resource('/employee', EmployeeController::class, ['except' => ['create', 'edit']]);
+Route::resource('/employees', EmployeeController::class, ['except' => ['create', 'edit']]);

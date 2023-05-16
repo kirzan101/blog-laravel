@@ -59,7 +59,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(EmployeeFormRequest $request, Employee $employee)
     {
         try
         {
