@@ -59,11 +59,11 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Employee $employee)
     {
         try
         {
-            $employee = employee::find($id);
+            // $employee = employee::find($id);
 
             $employee = tap($employee)->update([
                 'first_name' => $request->first_name,

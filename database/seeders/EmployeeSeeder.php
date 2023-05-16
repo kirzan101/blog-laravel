@@ -15,33 +15,33 @@ class EmployeeSeeder extends Seeder
     {
         $array = [
         [
-            'first_name' => 'first_name',
-            'middle_name' => 'middle_name',
-            'last_name' => 'last_name',
-            'contact_number' => 'contact_number',
-            'position' => 'position',
-            'department_id' => 'department_id',
-            'user_id' => 'user_id',
+            'first_name' => 'Rosalinda',
+            'middle_name' => 'Albay',
+            'last_name' => 'Rendon',
+            'contact_number' => '09664466114',
+            'position' => 'President',
+            'department_id' => '13455',
+            'user_id' => '1100364',
         ] ,
 
         [
-            'first_name' => 'first_name',
-            'middle_name' => 'middle_name',
-            'last_name' => 'last_name',
-            'contact_number' => 'contact_number',
-            'position' => 'position',
-            'department_id' => 'department_id',
-            'user_id' => 'user_id',
+            'first_name' => 'Rosalinda',
+            'middle_name' => 'Albay',
+            'last_name' => 'Rendon',
+            'contact_number' => '09664466114',
+            'position' => 'President',
+            'department_id' => '2654332',
+            'user_id' => '1900364',
         ]   ,
 
         [
-            'first_name' => 'first_name',
-            'middle_name' => 'middle_name',
-            'last_name' => 'last_name',
-            'contact_number' => 'contact_number',
-            'position' => 'position',
-            'department_id' => 'department_id',
-            'user_id' => 'user_id',
+            'first_name' => 'Rosalinda',
+            'middle_name' => 'Albay',
+            'last_name' => 'Rendon',
+            'contact_number' => '09664466114',
+            'position' => 'President',
+            'department_id' => '654322',
+            'user_id' => '00364',
         ]
         ];
            
