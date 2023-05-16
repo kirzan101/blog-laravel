@@ -38,8 +38,7 @@ class AccountabilityController extends Controller
             'item_id' => $request->item_id,
             'department_id' => $request->department_id,
             'status' => $request->status,
-            'updated_at' => $request->updated_at,
-            'created_at' => $request->created_at,
+            
 
         ]);
 

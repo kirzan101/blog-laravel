@@ -26,8 +26,7 @@ class AccountabilityFormRequest extends FormRequest
             'item_id' => 'required',           
             'department_id' => 'required',           
             'status' => 'required|max:255',
-            'updated_at' => 'required',
-            'created_at' => 'required',
+
         ];
     }
 }

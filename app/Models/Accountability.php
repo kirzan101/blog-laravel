@@ -13,8 +13,6 @@ class Accountability extends Model
         'emloyee_id',
         'item_id',
         'department_id',
-        'status',
-        'updated_at',
-        'created_at'
+        'status'
     ];
 }
