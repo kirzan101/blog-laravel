@@ -24,9 +24,9 @@ class StockFormRequest extends FormRequest
         return [
             'code' => 'required|max:10',
             'serial_number' => 'required|max:10',
-            'manufacture_date' => 'required|max:10',
-            'item_id' => 'required|max:10',
-            'supplier_id' => 'required|max:10',
+            'manufacture_date' => 'required|date',
+            'item_id' => 'required',
+            'supplier_id' => 'required',
         ];
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Requests\StockFormRequest;
 use App\Http\Resources\StockResource;
 use Illuminate\Http\Request;
 use App\Models\Stock;
-use Exception;
 
 class StockController extends Controller
 {
@@ -16,10 +15,10 @@ class StockController extends Controller
     public function index()
     {
         //all record
-        $stock = Stock::all(); //select all from stock;
+        $stocks = Stock::all(); //select all from stock;
 
         //return $stock;
-        return StockResource::collection($stock); // for 2 or more records
+        return StockResource::collection($stocks); // for 2 or more records
     }
 
     /**
@@ -31,6 +30,7 @@ class StockController extends Controller
 
         // create record
         $stock = Stock::create([
+            'code' => $request->code,
             'serial_number' => $request->serial_number,
             'manufacture_date' => $request->manufacture_date,
             'item_id' => $request->item_id,
@@ -44,35 +44,35 @@ class StockController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    
-     public function show(Stock $stock)
-     {
-         // return $stock;
-         return new StockResource($stock); //for 1 only
-     }
- 
+
+    public function show(Stock $stock)
+    {
+        // return $stock;
+        return new StockResource($stock); //for 1 only
+    }
+
 
     public function update(Request $request, Stock $stock)
     {
-        try
-        {
-        //update stock records
-        // $stock = Stock::find($id);
-        // dd($stock);
+        try {
+            //update stock records
+            // $stock = Stock::find($id);
+            // dd($stock);
 
-        $stock = tap($stock)->update([
-            'serial_number' => $request->serial_number,
-            'manufacture_date' => $request->manufacture_date,
-            'item_id' => $request->item_id,
-            'supplier_id' => $request->supplier_id
-        ]);
+            $stock = tap($stock)->update([
+                'code' => $request->code,
+                'serial_number' => $request->serial_number,
+                'manufacture_date' => $request->manufacture_date,
+                'item_id' => $request->item_id,
+                'supplier_id' => $request->supplier_id,
+            ]);
 
-        return new StockResource($stock);
-    } catch(\Exception $e)
-    {
-        return ['error' => 'has error - ' . $e];
+            return new StockResource($stock);
+        } catch (\Exception $e) {
+            return ['error' => 'has error - ' . $e];
+        }
     }
-    }
+
     /**
      * Remove the specified resource from storage.
      */
