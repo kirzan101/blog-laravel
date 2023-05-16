@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             CommentSeeder::class,
             SupplierSeeder::class,
             EmployeeSeeder::class,
+            UserGroupSeeder::class,
         ]);
     }
 }

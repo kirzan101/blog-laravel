@@ -4,6 +4,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserGroupController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +28,5 @@ Route::resource('/posts', PostController::class, ['except' => ['create', 'edit']
 Route::resource('/comments', CommentController::class, ['except' => ['create', 'edit']]);
 Route::resource('/suppliers', SupplierController::class, ['except' => ['create', 'edit']]);
 Route::resource('/employees', EmployeeController::class, ['except' => ['create', 'edit']]);
+Route::resource('/usergroup', UserGroupController::class, ['except' => ['create', 'edit']]);
+
