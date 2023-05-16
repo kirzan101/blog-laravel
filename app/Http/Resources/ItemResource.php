@@ -17,10 +17,10 @@ class ItemResource extends JsonResource
         return [
             'id' => (int) $this->getKey(),
             'description' => $this->description,
-            'brand' => $this->brands,
-            'model' => $this->models,
-            'department_id' => $this->updated_at,
-            'supplier_id' => $this->updated_at,
+            'brand' => $this->brand,
+            'model' => $this->model,
+            'department_id' => $this->department_id,
+            'supplier_id' => $this->supplier_id,
             //'comments' => $this->comments//CommentResource::collection($this->comments),
         ];
     }

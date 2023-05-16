@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ItemFormRequest;
 use App\Http\Resources\ItemResource;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -33,10 +34,10 @@ class ItemController extends Controller
         // create record`
         $item = Item::create([
             'description' => $request->description,
-            'brand' => $request->description,
-            'model' => $request->description,
-            'department_id' => $request->description,
-            'supplier_id' => $request->description,
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'department_id' => $request->department_id,
+            'supplier_id' => $request->supplier_id,
         ]);
 
         return new ItemResource($item);
@@ -54,13 +55,18 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Item $item)
     {
         try {
-            $item = Item::find($id);
+            // $item = Item::find($item);
 
             $item = tap($item)->update([
                 'description' => $request->description,
+                'brand' => $request->brand,
+                'model' => $request->model,
+                'department_id' => $request->department_id,
+                'supplier_id' => $request->supplier_id,
+
             ]);
 
             return new ItemResource($item);
