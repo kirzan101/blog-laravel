@@ -45,7 +45,7 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Supplier $suplier)
+    public function show(Supplier $supplier)
     {
         // return $post;
         return new SupplierResource($supplier); //for 1 only
@@ -54,11 +54,11 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Supplier $supplier)
     {
         try
         {
-            $supplier = Supplier::find($id);
+            //   $supplier = Supplier::find($id);
 
             $supplier = tap($supplier)->update([
                 'name' => $request->name,
