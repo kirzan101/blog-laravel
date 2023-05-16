@@ -17,9 +17,18 @@ class PostSeeder extends Seeder
         // ]);
 
         $array = [
-            ['description' => 'test1 rest'],
-            ['description' => 'test2 rest'],
-            ['description' => 'test3 rest'],
+            [
+                'description' => 'test_1',
+                'teacher_id' => 1
+            ],
+            [
+                'description' => 'test_2',
+                'teacher_id' => 1
+            ],
+            [
+                'description' => 'test_2',
+                'teacher_id' => 1
+            ]
         ];
 
         foreach ($array as $arr) {

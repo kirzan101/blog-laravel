@@ -19,17 +19,16 @@ class DatabaseSeeder extends Seeder
         //     'e
 
         $this->call([
+            TeacherSeeder::class,
             PostSeeder::class,
             CommentSeeder::class,
             SupplierSeeder::class,
-            EmployeeSeeder::class,
             UserGroupSeeder::class,
+            DepartmentSeeder::class,
+            EmployeeSeeder::class,
             ItemSeeder::class,
             AccountabilitySeeder::class,
             StockSeeder::class,
-            DepartmentSeeder::class,
-            TeacherSeeder::class,
-            TeacherSeeder::class,
         ]);
     }
 }

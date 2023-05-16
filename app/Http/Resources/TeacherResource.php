@@ -23,7 +23,8 @@ class TeacherResource extends JsonResource
             'contact_no' => $this->contact_no,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'complete_name' => $this->getCompleteName()
+            'complete_name' => $this->getCompleteName(),
+            'posts' => PostResource::collection($this->posts)
         ];
     }
 }
