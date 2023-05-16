@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             StockSeeder::class,
             DepartmentSeeder::class,
             TeacherSeeder::class,
+            TeacherSeeder::class,
         ]);
     }
 }
