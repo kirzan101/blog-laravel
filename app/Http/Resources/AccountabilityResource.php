@@ -20,7 +20,8 @@ class AccountabilityResource extends JsonResource
             'item_id' => $this->item_id,
             'department_id' => $this->department_id,
             'status' => $this->status,
-            //'comments' => $this->comments//CommentResource::collection($this->comments),
+            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at,
         ];
     }
 }

@@ -7,7 +7,6 @@ use App\Http\Resources\AccountabilityResource;
 use Illuminate\Http\Request;
 use App\Models\Accountability;
 use Exception;
-use Symfony\Component\HttpFoundation\AcceptHeader;
 
 class AccountabilityController extends Controller
 {
@@ -17,9 +16,9 @@ class AccountabilityController extends Controller
     public function index()
     {
         //all record
-        $accountability= Accountability::all();//select * from accountabilitys;
+        $accountability = Accountability::all();//select * from accountability;
         
-        // return $posts;
+        // return $accountability;
         return AccountabilityResource::collection($accountability); // for 2 or more records
     }
 
@@ -35,10 +34,13 @@ class AccountabilityController extends Controller
 
         // create record`
         $accountability = Accountability::create([
-            'employee_id' => (int)$request->employee_id,
-            'item_id' => (integer)$request->item_id,
-            'department_id' =>(integer) $request->department_id,
-            'status' => $request->status
+            'employee_id' => $request->employee_id,
+            'item_id' => $request->item_id,
+            'department_id' => $request->department_id,
+            'status' => $request->status,
+            'updated_at' => $request->updated_at,
+            'created_at' => $request->created_at,
+
         ]);
 
         return new AccountabilityResource($accountability);
@@ -49,21 +51,24 @@ class AccountabilityController extends Controller
      */
     public function show(Accountability $accountability)
     {
-        // return $Accountability;
+        // return $accountability;
         return new AccountabilityResource($accountability); //for 1 only
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Accountability $accountability)
     {
         try
         {
-            $accountability = Accountability::find($id);
-
             $accountability = tap($accountability)->update([
-                'description' => $request->description
+                'employee_id' => $request->employee_id,
+                'item_id' => $request->item_id,
+                'department_id' => $request->department_id,
+                'status' => $request->status,
+                'updated_at' => $request->updated_at,
+                'created_at' => $request->created_at,
             ]);
 
             return new AccountabilityResource($accountability);
@@ -76,17 +81,8 @@ class AccountabilityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Accountability $accountability)
     {
-        try{
-            $Accountability = Accountability::find(id);
-
-            $accountability= tap(accountability)->update([
-                'employee_id' => (integer)$request->employee_id,
-                'item_id' => (integer)$request->item_id,
-                'department_id' =>(integer) $request->department_id,
-                'status' => $request->status
-            ]);
-        }
+        //delete record
     }
 }

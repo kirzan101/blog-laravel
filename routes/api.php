@@ -29,6 +29,5 @@ Route::resource('/comments', CommentController::class, ['except' => ['create', '
 Route::resource('/suppliers', SupplierController::class, ['except' => ['create', 'edit']]);
 Route::resource('/employees', EmployeeController::class, ['except' => ['create', 'edit']]);
 Route::resource('/usergroup', UserGroupController::class, ['except' => ['create', 'edit']]);
-
 Route::resource('/accountability', AccountabilityController::class, ['except' => ['create', 'edit']]);
 // Route::resource('/comments', AccountabilityController::class, ['except' => ['create', 'edit']]);

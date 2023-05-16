@@ -26,19 +26,8 @@ class AccountabilityFormRequest extends FormRequest
             'item_id' => 'required',           
             'department_id' => 'required',           
             'status' => 'required|max:255',
-                   
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'id.required' => 'required',
-            'employee_id.required' => 'required',
-            'item_id.required' => 'required',
-            'department_id.required' => 'required',
-            'status.max' => 'required',
-   
+            'updated_at' => 'required',
+            'created_at' => 'required',
         ];
     }
 }

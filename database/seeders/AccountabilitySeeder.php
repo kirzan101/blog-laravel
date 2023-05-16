@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Accountability;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Accountability;
 
 class AccountabilitySeeder extends Seeder
 {
@@ -18,24 +19,25 @@ class AccountabilitySeeder extends Seeder
         
         $array = [
             [
-            'employee_id' => '()',
+            'employee_id' => '2445',
             'item_id' => '1708',           
             'department_id' => '1498',           
-            'status' => 'Pending'       
+            'status' => 'Pending', 
         ],
 
         [
             'employee_id' => '1298',
             'item_id' => '6540',           
             'department_id' => '3456',           
-            'status' => 'Received'
+            'status' => 'Received',
       
-        ],
+        ]
+
         ];
 
-        foreach($array as $arr)
+        foreach($array as $array)
         {
-            Accountability::create($arr);
+            Accountability::create($array);
         }
 
     }

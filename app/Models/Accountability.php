@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Accountability extends Model
 {
     use HasFactory;
-    protected
-     $fillable = [
-        'id',
+    
+    protected $fillable = [
         'emloyee_id',
         'item_id',
         'department_id',
         'status',
+        'updated_at',
+        'created_at'
     ];
 }
