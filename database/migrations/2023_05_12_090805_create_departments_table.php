@@ -17,10 +17,6 @@ return new class extends Migration
             $table->string('code');
             $table->string('contact_number');
             $table->string('description');
-<<<<<<< Updated upstream
-=======
-            $table->unsignedBigInteger('post_id');
->>>>>>> Stashed changes
             $table->timestamps();
         });
     }

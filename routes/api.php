@@ -35,4 +35,4 @@ Route::resource('/employees', EmployeeController::class, ['except' => ['create',
 Route::resource('/usergroup', UserGroupController::class, ['except' => ['create', 'edit']]);
 Route::resource('/accountability', AccountabilityController::class, ['except' => ['create', 'edit']]);
 Route::resource('/stocks', StockController::class, ['except' => ['create', 'edit']]);
-Route::resource('/department', DepartmentController::class, ['except' => ['create', 'edit']]);
+Route::resource('/departments', DepartmentController::class, ['except' => ['create', 'edit']]);
