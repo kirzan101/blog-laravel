@@ -15,5 +15,13 @@ class Department extends Model
         'contact_number', 
         'description'
     ];
-    
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
+    public function userGroups()
+    {
+        return $this->hasMany(UserGroup::class);
+    }
 }
