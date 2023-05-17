@@ -15,6 +15,11 @@ class Department extends Model
         'contact_number', 
         'description'
     ];
+    /**
+     * associate department to employee
+     *
+     * @return object
+     */
     public function employees()
     {
         return $this->hasMany(Employee::class);
