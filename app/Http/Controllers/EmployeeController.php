@@ -101,7 +101,7 @@ class EmployeeController extends Controller
                 'contact_number' => $request->contact_number,
                 'position' => $request->position,
                 'department_id' => $request->department_id,
-                'user_id' => $request->user_id,
+                // 'user_id' => $request->user_id,
             ]);
 
             return new EmployeeResource($employee);
