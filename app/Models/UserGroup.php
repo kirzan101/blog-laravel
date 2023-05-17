@@ -14,10 +14,20 @@ class UserGroup extends Model
         'code',
         'description'
     ];
+     /**
+     * associate usergroup to department
+     *
+     * @return object
+     */
   public function department()
 {
   return $this->belongsTo(Department::class);
 }
+/**
+     * get the list of users associated to usergroup
+     *
+     * @return collections
+     */
 public function users()
 {
   return $this->hasMany(User::class);
