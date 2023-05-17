@@ -18,4 +18,14 @@ class Employee extends Model
         'department_id',
         'user_id'
     ];
+
+    /**
+     * Associate user to employee
+     *
+     * @return object
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

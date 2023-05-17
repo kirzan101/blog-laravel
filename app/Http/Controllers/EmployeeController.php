@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Http\Requests\EmployeeFormRequest;
 use App\Http\Resources\EmployeeResource;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //all record
-        $employee = Employee::all();//select * from posts;
-        
+        $employee = Employee::all(); //select * from posts;
+
         // return $posts;
         return EmployeeResource::collection($employee); // for 2 or more records
     }
@@ -25,24 +28,43 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-
     public function store(EmployeeFormRequest $request)
     {
 
-        // $request->validate([
-        //     'description' => 'required|max:255',
-        // ]);
+        DB::beginTransaction();
 
-        // create record`
-        $employee = Employee::create([
-            'first_name' => $request->first_name,
-            'middle_name' => $request->middle_name,            
-            'last_name' => $request->last_name,            
-            'contact_number' => $request->contact_number,            
-            'position' => $request->position,            
-            'department_id' => $request->department_id,            
-            'user_id' => $request->user_id,            
-        ]);
+        try {
+            //Generate username
+            $username = Helper::username($request->first_name, $request->last_name);
+
+            //Create Users
+            $user = User::create([
+                'email' => $request->email,
+                'username' => $username,
+                'password' => bcrypt($request->password),
+                'user_group_id' => $request->user_group_id
+            ]);
+
+            // create employee
+            $employee = Employee::create([
+                'first_name' => $request->first_name,
+                'middle_name' => $request->middle_name,
+                'last_name' => $request->last_name,
+                'contact_number' => $request->contact_number,
+                'position' => $request->position,
+                'department_id' => $request->department_id,
+                'user_id' => $user->getKey(),
+            ]);
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
+        }
+
+        DB::commit();
 
         return new EmployeeResource($employee);
     }
@@ -61,25 +83,38 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeFormRequest $request, Employee $employee)
     {
-        try
-        {
+        DB::beginTransaction();
+
+        try {
             // $employee = employee::find($id);
+
+            $user = User::find($employee->user->getKey());
+
+            $user->update([
+                'email' => $request->email
+            ]);
 
             $employee = tap($employee)->update([
                 'first_name' => $request->first_name,
-                'middle_name' => $request->middle_name,            
-                'last_name' => $request->last_name,            
-                'contact_number' => $request->contact_number,            
-                'position' => $request->position,            
-                'department_id' => $request->department_id,            
-                'user_id' => $request->user_id,            
+                'middle_name' => $request->middle_name,
+                'last_name' => $request->last_name,
+                'contact_number' => $request->contact_number,
+                'position' => $request->position,
+                'department_id' => $request->department_id,
+                'user_id' => $request->user_id,
             ]);
 
             return new EmployeeResource($employee);
-        } catch(\Exception $e)
-        {
-            return ['error' => 'has error - ' . $e];
+        } catch (\Exception $e) {
+            
+            DB::rollBack();
+
+            return response()->json([
+                'message' => $e->getMessage()
+            ], 500);
         }
+
+        DB::commit();
     }
 
     /**

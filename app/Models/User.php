@@ -21,6 +21,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'user_group_id'
     ];
 
     /**
@@ -41,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the Associated User
+     *
+     * @return void
+     */
+    public function employee()
+    {
+        $this->hasOne(Employee::class);
+    }
 }
