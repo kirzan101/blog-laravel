@@ -15,4 +15,16 @@ class Accountability extends Model
         'department_id',
         'status'
     ];
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+    public function item()
+    {
+        return $this->hasMany(item::class);
+    }
+    public function department()
+    {
+        return $this->hasMany(department::class);
+    }
 }
