@@ -15,5 +15,8 @@ class Department extends Model
         'contact_number', 
         'description'
     ];
-    
+    public function department()
+    {
+        return $this->hasOne(Department::class);
+    }
 }
