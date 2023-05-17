@@ -66,6 +66,7 @@ class EmployeeSeeder extends Seeder
                         'email' => 'admin@astoria.com.ph',
                         'password' => bcrypt('admin'),
                         'user_group_id' => $user_group->getKey()
+
                     ],
                     'employee' => [
                         'first_name' => 'Admin',

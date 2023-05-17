@@ -20,12 +20,22 @@ class Employee extends Model
     ];
 
     /**
-     * Associate user to employee
+     * Associate department to user
      *
      * @return object
      */
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+            /**
+     * get the list of comments associated to Post
+     *
+     * @return collections
+     */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
+
 }
