@@ -104,7 +104,7 @@ class EmployeeSeeder extends Seeder
 
                 
                 $final_array = array_merge($existing_array, $new_array);
-                
+            
                 Employee::create($final_array);
             }
         }
