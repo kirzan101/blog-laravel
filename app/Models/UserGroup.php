@@ -14,5 +14,12 @@ class UserGroup extends Model
         'code',
         'description'
     ];
-  
+  public function department()
+{
+  return $this->belongsTo(Department::class);
+}
+public function users()
+{
+  return $this->hasMany(User::class);
+}
 }
