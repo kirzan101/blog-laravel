@@ -23,7 +23,7 @@ class StockFormRequest extends FormRequest
     {
         return [
             'code' => 'required|max:10',
-            'serial_number' => 'required|max:10',
+            'serial_number' => 'required|max:10|unique::stocks,serial_number,'.$this->id,
             'manufacture_date' => 'required|date',
             'item_id' => 'required',
             'supplier_id' => 'required',
