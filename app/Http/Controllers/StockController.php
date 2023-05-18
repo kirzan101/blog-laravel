@@ -8,7 +8,6 @@ use App\Http\Resources\StockResource;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Stock;
-use App\Models\Item;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -37,17 +36,6 @@ class StockController extends Controller
         DB::beginTransaction();
 
         try {
-            //Generate username
-            $username = Helper::username($request);
-
-            //Create Users
-            $user = User::create([
-                'email' => $request->email,
-                'username' => $username,
-                'password' => bcrypt($request->password),
-                'user_group_id' => $request->user_group_id
-            ]);
-
             // create employee
             $stock = Stock::create([
                 'code' => $request->code,
@@ -82,7 +70,7 @@ class StockController extends Controller
     }
 
 
-    public function update(Request $request, Stock $stock)
+    public function update(StockFormRequest $request, Stock $stock)
     {
         try {
             //update stock records

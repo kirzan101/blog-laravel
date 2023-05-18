@@ -38,8 +38,7 @@ class StockSeeder extends Seeder
                         'supplier_id' => $supplier->getKey(),
                     ]
                 ] //end here
-                ,
-                [
+                , [
                     'user' => [
                         'username' => 'adminanna',
                         'email' => 'admin.anna@gmail.com.ph',
