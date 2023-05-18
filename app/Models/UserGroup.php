@@ -12,7 +12,8 @@ class UserGroup extends Model
     protected $fillable = [
         'name',
         'code',
-        'description'
+        'description',
+        'department_id'
     ];
      /**
      * associate usergroup to department
@@ -23,6 +24,7 @@ class UserGroup extends Model
 {
   return $this->belongsTo(Department::class);
 }
+
 /**
      * get the list of users associated to usergroup
      *
