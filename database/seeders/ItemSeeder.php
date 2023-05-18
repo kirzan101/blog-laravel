@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Department;
 use App\Models\Item;
+use App\Models\Supplier;
 use Illuminate\Database\Seeder;
 
 class ItemSeeder extends Seeder
@@ -12,26 +14,30 @@ class ItemSeeder extends Seeder
      */
     public function run(): void
     {
-        $array = [
-            [
-                'description' => 'Intel Celeron',
-                'brand' => 'ZH&K',
-                'model' => 'Android 18',
-                'department_id' => '123',
-                'supplier_id' => '123',
-            ],
+        $department = Department::all()->first();
+        $supplier = Supplier::all()->first();
+        // dd($department->getKey(), $supplier->getKey());
 
+        $arrays = [
             [
-                'description' => 'Superman',
-                'brand' => 'Samsung',
-                'model' => 'Android17',
-                'department_id' => '14',
-                'supplier_id' => '14',
+                'description' => 'With CORE i3',
+                'brand' => 'Lenovo',
+                'model' => 'Ideapad3 Slim 3',
+                'department_id' => $department->getKey(),
+                'supplier_id' => $supplier->getKey(),
+            ],
+            [
+                'description' => 'With CORE i7',
+                'brand' => 'Lenovo',
+                'model' => 'Ideapad3 Slim 3',
+                'department_id' => $department->getKey(),
+                'supplier_id' => $supplier->getKey(),
             ],
         ];
 
-        foreach ($array as $arr) {
-            Item::create($arr);
+        foreach ($arrays as $array) {
+
+            Item::create($array);
         }
     }
 }

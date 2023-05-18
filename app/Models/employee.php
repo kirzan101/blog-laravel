@@ -16,7 +16,7 @@ class Employee extends Model
         'contact_number',
         'position',
         'department_id',
-        'user_id'
+        'user_id',
     ];
 
     /**
@@ -24,8 +24,8 @@ class Employee extends Model
      *
      * @return object
      */
-    public function user()
+    public function stocks()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Stock::class);
     }
 }
