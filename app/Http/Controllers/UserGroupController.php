@@ -54,15 +54,7 @@ class UserGroupController extends Controller
     /**
      * Update the specified resource in storage.
      */
-<<<<<<< Updated upstream
-<<<<<<< HEAD
     public function update(UserGroupFormRequest $request, UserGroup $usergroup)
-=======
-    public function update(UserGroupRequest $request, UserGroup $usergroup)
->>>>>>> 746ebf7d2379ade67a0658d3ee88fba3e2f19f27
-=======
-    public function update(UserGroupFormRequest $request, UserGroup $usergroup)
->>>>>>> Stashed changes
     {
         try {
             //$usergroup = UserGroup::find($id);
