@@ -22,9 +22,9 @@ class StockFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required|max:10',
-            'serial_number' => 'required|max:10',
-            'manufacture_date' => 'required|date',
+            'code' => 'required|min:2|unique:stocks,code,'.$this->id,
+            'serial_number' => 'required|min:2|unique:stocks,serial_number,'.$this->id,
+            'manufacture_date' => 'required|date_format:Y-m-d',
             'item_id' => 'required',
             'supplier_id' => 'required',
         ];
