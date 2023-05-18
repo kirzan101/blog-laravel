@@ -16,10 +16,10 @@ class DepartmentController extends Controller
     public function index()
     {
         //all record
-        $department = Department::all();//select * from department;
+        $departments = Department::all();//select * from department;
         
         // return $posts;
-        return DepartmentResource::collection($department); // for 2 or more records
+        return DepartmentResource::collection($departments); // for 2 or more records
     }
 
     /**
@@ -57,7 +57,7 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Department $department)
+    public function update(DepartmentFormRequest $request, Department $department)
     {
         try
         {
