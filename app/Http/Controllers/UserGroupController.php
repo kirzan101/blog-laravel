@@ -16,11 +16,11 @@ class UserGroupController extends Controller
     public function index()
     {
         //all record
-        $usergroups = UserGroup::all();//select * from usergroup;
-        
+        $usergroups = UserGroup::all(); //select * from usergroup;
+
         // return $posts;
         return UserGroupResource::collection($usergroups); // for 2 or more records
-           }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -54,21 +54,19 @@ class UserGroupController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserGroupRequest $request, UserGroup $usergroup)
+    public function update(UserGroupFormRequest $request, UserGroup $usergroup)
     {
-        try
-        {
+        try {
             //$usergroup = UserGroup::find($id);
 
             $usergroup = tap($usergroup)->update([
-                'name' => $request -> name,
-                'code' => $request -> code,
+                'name' => $request->name,
+                'code' => $request->code,
                 'description' => $request->description
             ]);
 
             return new UserGroupResource($usergroup);
-        } catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return ['error' => 'has error - ' . $e];
         }
     }
