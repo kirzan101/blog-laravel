@@ -20,7 +20,7 @@ class UserGroupController extends Controller
         
         // return $posts;
         return UserGroupResource::collection($usergroups); // for 2 or more records
-    }
+           }
 
     /**
      * Store a newly created resource in storage.
@@ -54,7 +54,7 @@ class UserGroupController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserGroup $usergroup)
+    public function update(UserGroupRequest $request, UserGroup $usergroup)
     {
         try
         {
