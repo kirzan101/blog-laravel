@@ -19,10 +19,10 @@ class EmployeeController extends Controller
     public function index()
     {
         //all record
-        $employee = Employee::all(); //select * from posts;
+        $employees = Employee::all(); //select * from posts;
 
         // return $posts;
-        return EmployeeResource::collection($employee); // for 2 or more records
+        return EmployeeResource::collection($employees); // for 2 or more records
     }
 
     

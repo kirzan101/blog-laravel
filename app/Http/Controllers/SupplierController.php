@@ -16,8 +16,8 @@ class SupplierController extends Controller
     public function index()
     {
         //all record
-        $suppliers = Supplier::all();//select * from posts;
-        
+        $suppliers = Supplier::all(); //select * from posts;
+
         // return $posts;
         return SupplierResource::collection($suppliers); // for 2 or more records
     }
@@ -56,8 +56,7 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        try
-        {
+        try {
             //   $supplier = Supplier::find($id);
 
             $supplier = tap($supplier)->update([
@@ -67,14 +66,13 @@ class SupplierController extends Controller
             ]);
 
             return new SupplierResource($supplier);
-        } catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return ['error' => 'has error - ' . $e];
         }
     }
 
 
-    
+
     /**
      * Remove the specified resource from storage.
      */
