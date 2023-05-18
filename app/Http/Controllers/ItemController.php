@@ -64,8 +64,8 @@ class ItemController extends Controller
                 'description' => $request->description,
                 'brand' => $request->brand,
                 'model' => $request->model,
-                'department_id' => $request->department_id,
-                'supplier_id' => $request->supplier_id,
+                'department_id' => $request->department,
+                'supplier_id' => $request->supplier,
 
             ]);
 

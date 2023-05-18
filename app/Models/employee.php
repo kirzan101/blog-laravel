@@ -16,16 +16,35 @@ class Employee extends Model
         'contact_number',
         'position',
         'department_id',
-        'user_id'
+        'user_id',
     ];
 
     /**
-     * Associate user to employee
+     * Associate department to user
      *
      * @return object
      */
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    /**
+     * get the list of comments associated to Post
+     *
+     * @return collections
+     */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class);
     }
+
+        public function stocks()
+        {
+
+            return $this->hasMany(Stock::class);
+        }
 }
