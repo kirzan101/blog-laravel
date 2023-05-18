@@ -19,6 +19,7 @@ class Employee extends Model
         'user_id'
     ];
 
+    
     /**
      * Associate department to user
      *

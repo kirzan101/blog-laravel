@@ -95,6 +95,7 @@ class EmployeeSeeder extends Seeder
                 ]
             ];
 
+            
             foreach ($arrays as $array) {
                 $user = User::create($array['user']);
 
