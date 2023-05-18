@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('serial_number')->unique();
             $table->date('manufacture_date');
             $table->integer('item_id');

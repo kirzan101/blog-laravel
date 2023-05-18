@@ -16,4 +16,24 @@ class Stock extends Model
         'item_id',
         'supplier_id',
     ];
+
+    /**
+     * associate post to supplier
+     *
+     * @return object
+     */
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class );
+    }
+
+    /**
+     * get the list of items associated to Post
+     *
+     * @return object
+     */
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
 }

@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Item;
+use App\Models\UserGroup;
+use App\Models\Supplier;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Stock;
@@ -11,39 +15,58 @@ class StockSeeder extends Seeder
 
     public function run(): void
     {
-        //
 
-        $array = [
-            [
-                'code' => 'AB12',
-                'serial_number' => 'SRN 8495894',
-                'manufacture_date' => '2023-04-03',
-                'item_id' => '20',
-                'supplier_id' => '35',
-            ],
+        // $stock = Stock::all();
+        $item = Item::first();
+        $user_group = UserGroup::first();
+        $supplier = Supplier::first();
 
-            [
-                'code' => 'AB13',
-                'serial_number' => 'SRN 7565688',
-                'manufacture_date' => '2023-06-15',
-                'item_id' => '23',
-                'supplier_id' => '36',
-            ],
+            $arrays = [
+                [
+                    //start here
+                    'user' => [
+                        'username' => 'adminstock',
+                        'email' => 'stock@gmail.com.ph',
+                        'password' => bcrypt('stockadmin'),
+                        'user_group_id' => $user_group->getKey()
+                    ],
+                    'stock' => [
+                        'code' => 'AB14',
+                        'serial_number' => 'SRN 9659658',
+                        'manufacture_date' => '2023-07-20',
+                        'item_id' => $item->getKey(),
+                        'supplier_id' => $supplier->getKey(),
+                    ]
+                ] //end here
+                , [
+                    'user' => [
+                        'username' => 'adminanna',
+                        'email' => 'admin.anna@gmail.com.ph',
+                        'password' => bcrypt('annaadmin'),
+                        'user_group_id' => $user_group->getKey()
+                    ],
+                    'stock' => [
+                        'code' => 'AB34',
+                        'serial_number' => 'SRN 987954',
+                        'manufacture_date' => '2023-09-21',
+                        'item_id' => $item->getKey(),
+                        'supplier_id' => $supplier->getKey(),
+                    ]
+                ]
+            ];
 
-            [
-                'code' => 'AB14',
-                'serial_number' => 'SRN 9659658',
-                'manufacture_date' => '2023-07-20',
-                'item_id' => '25',
-                'supplier_id' => '38',
-            ]
+            foreach ($arrays as $array) {
+                $user = User::create($array['user']);
+
+                // array_push($array->employee, ['user_id' => $user->getKey]);
+
+                $existing_array = $array['stock'];
+                $new_array = ['code' => $user->getKey()];
 
 
-        ];
+                $final_array = array_merge($existing_array, $new_array);
 
-
-        foreach ($array as $array) {
-            Stock::create($array);
-        }
+                Stock::create($final_array);
+            }
     }
 }
