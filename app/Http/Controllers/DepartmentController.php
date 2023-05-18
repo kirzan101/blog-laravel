@@ -61,6 +61,7 @@ class DepartmentController extends Controller
     {
         try
         {
+            // dd($request);
             // $departments = Department::find($id);
 
             $department = tap($department)->update([
