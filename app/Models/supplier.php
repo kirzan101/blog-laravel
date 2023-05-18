@@ -14,7 +14,8 @@ class Supplier extends Model
         'address',
         'contact_number'
     ];
-        /**
+
+    /**
      * get the list of comments associated to Post
      *
      * @return collections
@@ -24,5 +25,5 @@ class Supplier extends Model
         return $this->hasMany(Item::class);
     }
 
-
+    
 }
