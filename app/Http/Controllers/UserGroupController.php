@@ -16,10 +16,10 @@ class UserGroupController extends Controller
     public function index()
     {
         //all record
-        $usergroup = UserGroup::all();//select * from usergroup;
+        $usergroups = UserGroup::all();//select * from usergroup;
         
         // return $posts;
-        return UserGroupResource::collection($usergroup); // for 2 or more records
+        return UserGroupResource::collection($usergroups); // for 2 or more records
     }
 
     /**
