@@ -23,7 +23,7 @@ class DepartmentFormRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2',
-            'code' => 'required|min:2',
+            'code' => 'required|code|unique:department,code'.$this->id,
             'contact_number' => 'required',
             'description' => 'required|min:2',
         ];

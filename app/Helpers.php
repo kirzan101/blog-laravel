@@ -7,6 +7,8 @@ class Helper {
 
     /**
      * Generate unique username
+     * Username format: {first name initial}{last name}
+     * Example result: Juan Dela Cruz => jdelacruz
      *
      * @param [string] $first_name
      * @param [string] $last_name
@@ -20,7 +22,7 @@ class Helper {
         try {
 
             // if first_name/last_name is empty, throw null
-            if($first_name == null || $last_name == null)
+            if(trim($first_name) == null || trim($first_name) == null)
                 return $result;
 
             do {
@@ -40,17 +42,17 @@ class Helper {
                 $result = sprintf('%s%s', $first_character, $lastname);
 
                 // check if username is unique
-                $user = User::where('username', $result)->get();
+                $user_count = User::where('username', $result)->count();
 
                 // if username is existing add suffix
-                if ($user->count() > 0) {
+                if ($user_count > 0) {
                     $suffix++;
                     $result = sprintf('%s%u', $result, $suffix);
 
                     // recheck if username is existing
-                    $user = User::where('username', $result)->get();
+                    $user_count = User::where('username', $result)->count();
                 }
-            } while ($user->count() > 0); 
+            } while ($user_count > 0); 
 
         } catch (\Throwable $th) {
             return $result;

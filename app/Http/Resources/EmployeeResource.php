@@ -21,7 +21,7 @@ class EmployeeResource extends JsonResource
         'last_name' =>  $this->last_name,
         'contact_number' => $this->contact_number,
         'position' => $this->position,
-        'department_id' => $this->department_id,
+        'department' => new DepartmentResource ($this->department),
         'user_id' => $this->user_id,
         //'comments' => $this->comments//CommentResource::collection)$this->comments),
         ];

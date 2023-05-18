@@ -19,19 +19,19 @@ class DepartmentSeeder extends Seeder
                 'name' => 'Information and Communication Technology',
                 'code' => 'ICT',
                 'description' => 'ICT usergroup',
-                'contact_number' => '0000000'
+                'contact_number' => '0000001'
             ],
             [
                 'name' => 'Accounting',
                 'code' => 'ACC',
                 'description' => 'Accounting usergroup',
-                'contact_number' => '0000000'
+                'contact_number' => '0000002'
             ],
             [
                 'name' => 'Front Office',
                 'code' => 'FO',
                 'description' => 'FO usergroup',
-                'contact_number' => '0000000'
+                'contact_number' => '03'
             ]
         ];
 
