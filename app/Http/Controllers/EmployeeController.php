@@ -37,6 +37,10 @@ class EmployeeController extends Controller
             //Generate username
             $username = Helper::username($request->first_name, $request->last_name);
 
+            $request->validate([
+                'email' => 'unique:users,email'
+            ]); 
+
             //Create Users
             $user = User::create([
                 'email' => $request->email,
@@ -86,13 +90,16 @@ class EmployeeController extends Controller
         DB::beginTransaction();
 
         try {
-            // $employee = employee::find($id);
 
-            $user = User::find($employee->user->getKey());
+            $user = User::find($employee->user_id);
 
             $user->update([
                 'email' => $request->email
             ]);
+
+            $request->validate([
+                'email' => 'unique:users,email,'.$user->getKey()
+            ]); 
 
             $employee = tap($employee)->update([
                 'first_name' => $request->first_name,
