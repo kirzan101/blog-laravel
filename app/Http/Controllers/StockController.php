@@ -77,6 +77,11 @@ class StockController extends Controller
             // $stock = Stock::find($id);
             // dd($stock);
 
+            $request->validate([
+                'code' => 'unique:stocks,code',
+                'serial_number' => 'unique:stocks,serial_number',
+            ]);
+            
             $stock = tap($stock)->update([
                 'code' => $request->code,
                 'serial_number' => $request->serial_number,
