@@ -25,6 +25,7 @@ class EmployeeController extends Controller
         return EmployeeResource::collection($employee); // for 2 or more records
     }
 
+    
     /**
      * Store a newly created resource in storage.
      */
