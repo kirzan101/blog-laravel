@@ -14,6 +14,7 @@ class EmployeeFormRequest extends FormRequest
     {
         return true;
     }
+    
 
     /**
      * Get the validation rules that apply to the request.
@@ -22,7 +23,7 @@ class EmployeeFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd($employee);
+        //dd($employee);
         return [
             'first_name' => 'required|min:2',
             'middle_name' => 'required|min:2',
@@ -30,7 +31,7 @@ class EmployeeFormRequest extends FormRequest
             'contact_number' => 'required|min:2',
             'position' => 'required|min:2',
             'department_id' => 'required',
-            'email' => 'required|email|unique:users,email,'.$this->employee->user_id,
+            'email' => 'required|email', //|unique:users,email,'.$this->employee->user_id,
             'password' => 'required|min:8',
             'user_group_id' => 'required|exists:user_groups,id'
             // 'user_id' => 'required',

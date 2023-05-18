@@ -25,6 +25,7 @@ class EmployeeController extends Controller
         return EmployeeResource::collection($employee); // for 2 or more records
     }
 
+    
     /**
      * Store a newly created resource in storage.
      */
@@ -36,6 +37,10 @@ class EmployeeController extends Controller
         try {
             //Generate username
             $username = Helper::username($request->first_name, $request->last_name);
+
+            $request->validate([
+                'email' => 'unique:users,email'
+            ]); 
 
             //Create Users
             $user = User::create([
@@ -86,13 +91,16 @@ class EmployeeController extends Controller
         DB::beginTransaction();
 
         try {
-            // $employee = employee::find($id);
 
-            $user = User::find($employee->user->getKey());
+            $user = User::find($employee->user_id);
 
             $user->update([
                 'email' => $request->email
             ]);
+
+            $request->validate([
+                'email' => 'unique:users,email,'.$user->getKey()
+            ]); 
 
             $employee = tap($employee)->update([
                 'first_name' => $request->first_name,

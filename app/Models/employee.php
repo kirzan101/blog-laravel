@@ -19,6 +19,7 @@ class Employee extends Model
         'user_id',
     ];
 
+    
     /**
      * Associate department to user
      *
@@ -32,19 +33,10 @@ class Employee extends Model
     /**
      * get the list of comments associated to Post
      *
-     * @return collections
+     * @return object
      */
     public function user()
     {
-        return $this->hasOne(User::class);
-    public function stocks()
-    {
-        return $this->hasMany(Stock::class);
+        return $this->belongsTo(User::class);
     }
-
-        public function stocks()
-        {
-
-            return $this->hasMany(Stock::class);
-        }
 }
