@@ -46,6 +46,7 @@ class AccountabilitySeeder extends Seeder
 
         foreach($array as $array)
         {
+
             Accountability::create($array);
         }
 
