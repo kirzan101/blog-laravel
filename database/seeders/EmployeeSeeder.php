@@ -3,11 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Department;
+use App\Models\Employee;
 use App\Models\User;
 use App\Models\UserGroup;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Employee;
 
 class EmployeeSeeder extends Seeder
 {
@@ -48,7 +47,6 @@ class EmployeeSeeder extends Seeder
         // ]
         // ];
 
-
         // foreach($array as $array)
         // {
         //     Employee::create($array);
@@ -64,9 +62,8 @@ class EmployeeSeeder extends Seeder
                     'user' => [
                         'username' => 'admin',
                         'email' => 'admin@astoria.com.ph',
-                        'password' => bcrypt('admin'),
-                        'user_group_id' => $user_group->getKey()
-
+                        'password' => bcrypt('pogi'),
+                        'user_group_id' => $user_group->getKey(),
                     ],
                     'employee' => [
                         'first_name' => 'Admin',
@@ -74,15 +71,15 @@ class EmployeeSeeder extends Seeder
                         'last_name' => 'User',
                         'contact_number' => '0000000000',
                         'position' => 'System Admin',
-                        'department_id' => $department->getKey()
-                    ]
+                        'department_id' => $department->getKey(),
+                    ],
                 ] //end here
                 , [
                     'user' => [
                         'username' => 'cescamilla',
                         'email' => 'christian.escamilla@astoria.com.ph',
                         'password' => bcrypt('pogi'),
-                        'user_group_id' => $user_group->getKey()
+                        'user_group_id' => $user_group->getKey(),
                     ],
                     'employee' => [
                         'first_name' => 'Christian',
@@ -90,9 +87,9 @@ class EmployeeSeeder extends Seeder
                         'last_name' => 'Escamilla',
                         'contact_number' => '0000000000',
                         'position' => 'Software Engineer',
-                        'department_id' => $department->getKey()
-                    ]
-                ]
+                        'department_id' => $department->getKey(),
+                    ],
+                ],
             ];
 
             foreach ($arrays as $array) {
@@ -103,9 +100,7 @@ class EmployeeSeeder extends Seeder
                 $existing_array = $array['employee'];
                 $new_array = ['user_id' => $user->getKey()];
 
-                
                 $final_array = array_merge($existing_array, $new_array);
-            
                 Employee::create($final_array);
             }
         }

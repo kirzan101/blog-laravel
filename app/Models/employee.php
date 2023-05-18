@@ -16,7 +16,7 @@ class Employee extends Model
         'contact_number',
         'position',
         'department_id',
-        'user_id'
+        'user_id',
     ];
 
     /**
@@ -28,7 +28,8 @@ class Employee extends Model
     {
         return $this->belongsTo(Department::class);
     }
-            /**
+
+    /**
      * get the list of comments associated to Post
      *
      * @return collections
@@ -38,4 +39,9 @@ class Employee extends Model
         return $this->hasOne(User::class);
     }
 
+        public function stocks()
+        {
+
+            return $this->hasMany(Stock::class);
+        }
 }

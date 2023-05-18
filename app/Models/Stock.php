@@ -14,7 +14,6 @@ class Stock extends Model
         'serial_number',
         'manufacture_date',
         'item_id',
-        'supplier_id'
+        'supplier_id',
     ];
-
 }
