@@ -10,6 +10,20 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = [
-        'description', 'brand', 'model', 'department_id', 'supplier_id',
+        'description',
+        'brand',
+        'model',
+        'department_id',
+        'supplier_id',
     ];
+
+    public function supplier()
+    {
+        return $this->belongsTo(supplier::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(department::class);
+    }
 }
