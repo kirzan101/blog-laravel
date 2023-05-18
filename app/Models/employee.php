@@ -20,12 +20,22 @@ class Employee extends Model
     ];
 
     /**
-     * Associate user to employee
+     * Associate employee to user
      *
      * @return object
      */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Associate employee to department
+     *
+     * @return void
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 }

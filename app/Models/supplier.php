@@ -14,12 +14,13 @@ class Supplier extends Model
         'address',
         'contact_number'
     ];
-        /**
-     * get the list of comments associated to Post
+
+    /**
+     * get the list of items
      *
      * @return collections
      */
-    public function item()
+    public function items()
     {
         return $this->hasMany(Item::class);
     }

@@ -6,6 +6,7 @@ use App\Http\Requests\AccountabilityFormRequest;
 use App\Http\Resources\AccountabilityResource;
 use Illuminate\Http\Request;
 use App\Models\Accountability;
+use Carbon\Carbon;
 use Exception;
 
 class AccountabilityController extends Controller
@@ -16,8 +17,8 @@ class AccountabilityController extends Controller
     public function index()
     {
         //all record
-        $accountability = Accountability::all();//select * from accountability;
-        
+        $accountability = Accountability::all(); //select * from accountability;
+
         // return $accountability;
         return AccountabilityResource::collection($accountability); // for 2 or more records
     }
@@ -27,20 +28,30 @@ class AccountabilityController extends Controller
      */
     public function store(AccountabilityFormRequest $request)
     {
-
-        // $request->validate([
-        //     'description' => 'required|max:255',
-        // ]);
-
-        // create record`
-        $accountability = Accountability::create([
+        // set accountability values
+        $accountability_array = [
             'employee_id' => $request->employee_id,
             'item_id' => $request->item_id,
             'department_id' => $request->department_id,
             'status' => $request->status,
-            
+        ];
 
-        ]);
+        //check if status is received/returned
+        if ($request->status === 'Received') {
+            // add received at value
+            $received_at_array = ['received_at' => Carbon::now()];
+
+            //add the received at to the accountability array
+            $accountability_array = array_merge($accountability_array, $received_at_array);
+        } else if ($request->status === 'Returned') {
+            $returned_at_array = ['returned_at' => Carbon::now()];
+
+            //add the received at to the accountability array
+            $accountability_array = array_merge($accountability_array, $returned_at_array);
+        }
+
+        // create accountability
+        $accountability = Accountability::create($accountability_array);
 
         return new AccountabilityResource($accountability);
     }
@@ -59,19 +70,33 @@ class AccountabilityController extends Controller
      */
     public function update(Request $request, Accountability $accountability)
     {
-        try
-        {
-            $accountability = tap($accountability)->update([
+        try {
+            // set accountability values
+            $accountability_array = [
                 'employee_id' => $request->employee_id,
                 'item_id' => $request->item_id,
                 'department_id' => $request->department_id,
                 'status' => $request->status,
-                
-            ]);
+            ];
+
+            //check if status is received/returned
+            if ($request->status === 'Received') {
+                // add received at value
+                $received_at_array = ['received_at' => Carbon::now()];
+
+                //add the received at to the accountability array
+                $accountability_array = array_merge($accountability_array, $received_at_array);
+            } else if ($request->status === 'Returned') {
+                $returned_at_array = ['returned_at' => Carbon::now()];
+
+                //add the received at to the accountability array
+                $accountability_array = array_merge($accountability_array, $returned_at_array);
+            }
+
+            $accountability = tap($accountability)->update($accountability_array);
 
             return new AccountabilityResource($accountability);
-        } catch(\Exception $e)
-        {
+        } catch (\Exception $e) {
             return ['error' => 'has error - ' . $e];
         }
     }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('item_id');
             $table->integer('department_id');
             $table->string('status');
+            $table->datetime('received_at')->nullable();
+            $table->datetime('returned_at')->nullable();
             $table->timestamps();
         });
     }

@@ -22,10 +22,10 @@ class TeacherFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required',
-            'middle_name' => 'nullable',
-            'last_name' => 'required',
-            'email' => 'required|email',
+            'first_name' => 'required|min:2|alpha_dash:ascii',
+            'middle_name' => 'nullable|min:2|alpha_dash:ascii',
+            'last_name' => 'required|min:2|alpha_dash:ascii',
+            'email' => 'required|email|unique:teachers,email,'.$this->id,
             'contact_no' => 'required',
         ];
     }

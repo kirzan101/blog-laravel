@@ -23,7 +23,7 @@ class UserGroupFormRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2',
-            'code' => 'required|min:2',
+            'code' => 'required|min:2|unique:user_groups,code,'.$this->id,
             'description' => 'required|min:2',
         ];
     }

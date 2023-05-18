@@ -19,9 +19,8 @@ class ItemResource extends JsonResource
             'description' => $this->description,
             'brand' => $this->brand,
             'model' => $this->model,
-            'department_id' => $this->department_id,
-            'supplier_id' => $this->supplier_id,
-            //'comments' => $this->comments//CommentResource::collection($this->comments),
+            'department' => new DepartmentResource($this->department),
+            'supplier' => new SupplierResource($this->supplier),
         ];
     }
 }

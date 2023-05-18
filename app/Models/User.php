@@ -44,12 +44,22 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the Associated User
+     * Get the Associated Employee
      *
      * @return void
      */
     public function employee()
     {
         $this->hasOne(Employee::class);
+    }
+
+    /**
+     * Associate user to User Group
+     *
+     * @return void
+     */
+    public function userGroup()
+    {
+        $this->belongsTo(UserGroup::class);
     }
 }

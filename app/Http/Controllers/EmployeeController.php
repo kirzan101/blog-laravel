@@ -18,11 +18,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //all record
-        $employee = Employee::all(); //select * from posts;
+        $employee = Employee::all();
 
-        // return $posts;
-        return EmployeeResource::collection($employee); // for 2 or more records
+        return EmployeeResource::collection($employee);
     }
 
     /**
@@ -86,8 +84,6 @@ class EmployeeController extends Controller
         DB::beginTransaction();
 
         try {
-            // $employee = employee::find($id);
-
             $user = User::find($employee->user->getKey());
 
             $user->update([
@@ -101,7 +97,6 @@ class EmployeeController extends Controller
                 'contact_number' => $request->contact_number,
                 'position' => $request->position,
                 'department_id' => $request->department_id,
-                // 'user_id' => $request->user_id,
             ]);
 
             return new EmployeeResource($employee);

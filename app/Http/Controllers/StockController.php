@@ -14,11 +14,9 @@ class StockController extends Controller
      */
     public function index()
     {
-        //all record
-        $stocks = Stock::all(); //select all from stock;
+        $stocks = Stock::all();
 
-        //return $stock;
-        return StockResource::collection($stocks); // for 2 or more records
+        return StockResource::collection($stocks);
     }
 
     /**
@@ -47,18 +45,13 @@ class StockController extends Controller
 
     public function show(Stock $stock)
     {
-        // return $stock;
-        return new StockResource($stock); //for 1 only
+        return new StockResource($stock);
     }
 
 
     public function update(Request $request, Stock $stock)
     {
         try {
-            //update stock records
-            // $stock = Stock::find($id);
-            // dd($stock);
-
             $stock = tap($stock)->update([
                 'code' => $request->code,
                 'serial_number' => $request->serial_number,

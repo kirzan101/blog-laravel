@@ -15,11 +15,9 @@ class UserGroupController extends Controller
      */
     public function index()
     {
-        //all record
-        $usergroup = UserGroup::all();//select * from usergroup;
-        
-        // return $posts;
-        return UserGroupResource::collection($usergroup); // for 2 or more records
+        $usergroup = UserGroup::all();
+
+        return UserGroupResource::collection($usergroup);
     }
 
     /**
@@ -27,12 +25,6 @@ class UserGroupController extends Controller
      */
     public function store(UserGroupFormRequest $request)
     {
-
-        // $request->validate([
-        //     'description' => 'required|max:255',
-        // ]);
-
-        // create record`
         $usergroup = UserGroup::create([
             'name' => $request->name,
             'code' => $request->code,
@@ -47,8 +39,7 @@ class UserGroupController extends Controller
      */
     public function show(UserGroup $usergroup)
     {
-        // return $usergroup;
-        return new UserGroupResource($usergroup); //for 1 only
+        return new UserGroupResource($usergroup);
     }
 
     /**
@@ -58,8 +49,6 @@ class UserGroupController extends Controller
     {
         try
         {
-            //$usergroup = UserGroup::find($id);
-
             $usergroup = tap($usergroup)->update([
                 'name' => $request -> name,
                 'code' => $request -> code,

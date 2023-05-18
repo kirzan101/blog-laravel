@@ -17,4 +17,24 @@ class Stock extends Model
         'supplier_id'
     ];
 
+    /**
+     * Associate stock to item
+     *
+     * @return void
+     */
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
+    /**
+     * Associete stock to supplier
+     *
+     * @return void
+     */
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
+
 }

@@ -15,11 +15,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //all record
-        $suppliers = Supplier::all();//select * from posts;
-        
-        // return $posts;
-        return SupplierResource::collection($suppliers); // for 2 or more records
+        $suppliers = Supplier::all();
+ 
+        return SupplierResource::collection($suppliers);
     }
 
     /**
@@ -27,12 +25,6 @@ class SupplierController extends Controller
      */
     public function store(SupplierFormRequest $request)
     {
-
-        // $request->validate([
-        //     'description' => 'required|max:255',
-        // ]);
-
-        // create record`
         $supplier = Supplier::create([
             'name' => $request->name,
             'address' => $request->address,
@@ -47,8 +39,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        // return $post;
-        return new SupplierResource($supplier); //for 1 only
+        return new SupplierResource($supplier);
     }
 
     /**
@@ -58,8 +49,6 @@ class SupplierController extends Controller
     {
         try
         {
-            //   $supplier = Supplier::find($id);
-
             $supplier = tap($supplier)->update([
                 'name' => $request->name,
                 'address' => $request->address,

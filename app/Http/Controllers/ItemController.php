@@ -14,11 +14,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //all record
-        $item = Item::all(); //select * from posts;
+        $item = Item::all();
 
-        // return $posts;
-        return ItemResource::collection($item); // for 2 or more records
+        return ItemResource::collection($item);
     }
 
     /**
@@ -26,12 +24,6 @@ class ItemController extends Controller
      */
     public function store(ItemFormRequest $request)
     {
-
-        // $request->validate([
-        //     'description' => 'required|max:255',
-        // ]);
-
-        // create record`
         $item = Item::create([
             'description' => $request->description,
             'brand' => $request->brand,
@@ -48,8 +40,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        // return $post;
-        return new ItemResource($item); //for 1 only
+        return new ItemResource($item);
     }
 
     /**
@@ -58,8 +49,6 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         try {
-            // $item = Item::find($item);
-
             $item = tap($item)->update([
                 'description' => $request->description,
                 'brand' => $request->brand,

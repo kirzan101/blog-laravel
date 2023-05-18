@@ -22,7 +22,7 @@ class AccountabilitySeeder extends Seeder
             'employee_id' => '2445',
             'item_id' => '1708',           
             'department_id' => '1498',           
-            'status' => 'Pending', 
+            'status' => 'Returned', 
         ],
 
         [

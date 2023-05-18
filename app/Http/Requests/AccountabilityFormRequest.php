@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AccountabilityFormRequest extends FormRequest
 {
@@ -22,10 +23,13 @@ class AccountabilityFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required',
-            'item_id' => 'required',           
-            'department_id' => 'required',           
-            'status' => 'required|max:255',
+            'employee_id' => 'required|exists:employees,id',
+            'item_id' => 'required|exists:items,id',           
+            'department_id' => 'required|exists:departments,id',           
+            'status' => [
+                'required',
+                Rule::in(['Received', 'Returned'])
+            ],
 
         ];
     }

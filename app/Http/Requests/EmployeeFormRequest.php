@@ -24,16 +24,15 @@ class EmployeeFormRequest extends FormRequest
     {
         // dd($employee);
         return [
-            'first_name' => 'required|min:2',
-            'middle_name' => 'required|min:2',
-            'last_name' => 'required|min:2',
+            'first_name' => 'required|min:2|alpha_dash:ascii',
+            'middle_name' => 'nullable|min:2|alpha_dash:ascii',
+            'last_name' => 'required|min:2|alpha_dash:ascii',
             'contact_number' => 'required|min:2',
             'position' => 'required|min:2',
-            'department_id' => 'required',
+            'department_id' => 'required|exists:departments,id',
             'email' => 'required|email|unique:users,email,'.$this->employee->user_id,
             'password' => 'required|min:8',
             'user_group_id' => 'required|exists:user_groups,id'
-            // 'user_id' => 'required',
         ];
     }
 }

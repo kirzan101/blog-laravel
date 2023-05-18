@@ -27,13 +27,6 @@ class DepartmentController extends Controller
      */
     public function store(DepartmentFormRequest $request)
     {
-
-        // $request->validate([
-
-        //     'description' => 'required|max:255',
-        // ]);
-
-        // create record`
         $department = Department::create([
             'name' => $request->name,
             'code' => $request->code,
@@ -49,9 +42,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        // dd($department);
-        // return $post;
-        return new DepartmentResource($department); //for 1 only
+        return new DepartmentResource($department);
     }
 
     /**
@@ -61,8 +52,6 @@ class DepartmentController extends Controller
     {
         try
         {
-            // $departments = Department::find($id);
-
             $department = tap($department)->update([
                 'name' => $request->name,
                 'code' => $request->code,

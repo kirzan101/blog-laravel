@@ -22,11 +22,11 @@ class StockFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required|max:10',
-            'serial_number' => 'required|max:10',
-            'manufacture_date' => 'required|date',
-            'item_id' => 'required',
-            'supplier_id' => 'required',
+            'code' => 'required|min:2',
+            'serial_number' => 'required|unique:stoocks,serial_number,'.$this->id,
+            'manufacture_date' => 'required|date_format:Y-m-d',
+            'item_id' => 'required|exists:items,id',
+            'supplier_id' => 'required|exists:suppliers,id',
         ];
     }
 }
