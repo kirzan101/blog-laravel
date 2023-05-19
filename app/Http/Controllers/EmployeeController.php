@@ -25,7 +25,7 @@ class EmployeeController extends Controller
         return EmployeeResource::collection($employees); // for 2 or more records
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -40,7 +40,7 @@ class EmployeeController extends Controller
 
             $request->validate([
                 'email' => 'unique:users,email'
-            ]); 
+            ]);
 
             //Create Users
             $user = User::create([
@@ -99,8 +99,8 @@ class EmployeeController extends Controller
             ]);
 
             $request->validate([
-                'email' => 'unique:users,email,'.$user->getKey()
-            ]); 
+                'email' => 'unique:users,email,' . $user->getKey()
+            ]);
 
             $employee = tap($employee)->update([
                 'first_name' => $request->first_name,
@@ -114,7 +114,7 @@ class EmployeeController extends Controller
 
             return new EmployeeResource($employee);
         } catch (\Exception $e) {
-            
+
             DB::rollBack();
 
             return response()->json([
@@ -128,8 +128,29 @@ class EmployeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Employee $employee)
     {
-        //delete record
+        DB::beginTransaction();
+        try {
+            //delete record
+            $user = User::find($employee->user_id);
+
+            $employee->delete();
+            $user->delete();
+            
+        } catch (\Exception $e) {
+            //throw $th;
+            DB::rollBack();
+
+            return response()->json([
+                'message' => 'Something went wrong on deletion'
+            ], 500);
+        }
+
+        DB::commit();
+
+        return response()->json([
+            'message' => 'Successfully Deleted.'
+        ], 204);
     }
 }

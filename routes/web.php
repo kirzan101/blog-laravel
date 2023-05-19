@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-route::get('/department/trashed',[DepartmentController::class, 'trashed'])->name('departments.trashed');
 Route::get('/', function () {
     return view('welcome');
 });

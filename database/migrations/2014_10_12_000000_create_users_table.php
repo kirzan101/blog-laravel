@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_group_id');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_group_id')->references('id')->on('user_groups');
         });
