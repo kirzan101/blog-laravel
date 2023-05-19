@@ -25,8 +25,8 @@ class StockFormRequest extends FormRequest
             'code' => 'required|min:2|unique:stocks,code,'.$this->id,
             'serial_number' => 'required|min:2|unique:stocks,serial_number,'.$this->id,
             'manufacture_date' => 'required|date_format:Y-m-d',
-            'item_id' => 'required',
-            'supplier_id' => 'required',
+            'item_id' => 'required|exists:items,id',
+            'supplier_id' => 'required|exists:supplier,id',
         ];
     }
 }

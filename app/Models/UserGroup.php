@@ -7,29 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserGroup extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'code',
-        'description'
-    ];
-     /**
-     * associate usergroup to department
-     *
-     * @return object
-     */
+  protected $fillable = [
+    'name',
+    'code',
+    'description',
+    'department_id'
+  ];
+  /**
+   * associate usergroup to department
+   *
+   * @return object
+   */
   public function department()
-{
-  return $this->belongsTo(Department::class);
-}
-/**
-     * get the list of users associated to usergroup
-     *
-     * @return collections
-     */
-public function users()
-{
-  return $this->hasMany(User::class);
-}
+  {
+    return $this->belongsTo(Department::class);
+  }
+
+  /**
+   * get the list of users associated to usergroup
+   *
+   * @return collections
+   */
+  public function users()
+  {
+    return $this->hasMany(User::class);
+  }
 }
