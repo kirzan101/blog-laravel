@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Accountability;
+use App\Models\Employee;
+use App\Models\Item;
+use App\Models\Department;
 
 class AccountabilitySeeder extends Seeder
 {
@@ -13,30 +16,37 @@ class AccountabilitySeeder extends Seeder
      */
     public function run(): void
     {
-     // Accountability::create([
-        //     'status' => 'test5'
-        // ]);
+        $employee = Employee::all()->first();
+        $item = Item::all()->first();
+        $department = Department::all()->first();
+
         
         $array = [
             [
-            'employee_id' => '2445',
-            'item_id' => '1708',           
-            'department_id' => '1498',           
+            'employee_id' => $employee->getKey(),
+            'item_id' => $item->getKey(),           
+            'department_id' => $item->getKey(),           
             'status' => 'Pending', 
         ],
 
         [
-            'employee_id' => '1298',
-            'item_id' => '6540',           
-            'department_id' => '3456',           
+            'employee_id' => $employee->getKey(),
+            'item_id' => $item->getKey(),           
+            'department_id' => $item->getKey(),            
             'status' => 'Received',
       
+        ],
+        [
+            'employee_id' => $employee->getKey(),
+            'item_id' => $item->getKey(),           
+            'department_id' => $item->getKey(),            
+            'status' => 'Received',
         ]
-
         ];
 
         foreach($array as $array)
         {
+
             Accountability::create($array);
         }
 

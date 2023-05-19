@@ -22,9 +22,9 @@ class AccountabilityFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'required',
-            'item_id' => 'required',           
-            'department_id' => 'required',           
+            'employee_id' => 'required|exists:employees,id',
+            'item_id' => 'required|exists:item,id',           
+            'department_id' => 'required|exists:department,id',           
             'status' => 'required|max:255',
 
         ];

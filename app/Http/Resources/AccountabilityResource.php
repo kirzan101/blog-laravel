@@ -16,12 +16,10 @@ class AccountabilityResource extends JsonResource
     {
         return [
             'id' => (int) $this->getKey(),
-            'employee_id' => $this->employee_id,
-            'item_id' => $this->item_id,
-            'department_id' => $this->department_id,
+            'employee_id' => (int) $this->getKey(),
+            'item_id' => (int) $this->getKey(),
+            'department_id' => (int) $this->getKey(),
             'status' => $this->status,
-            'updated_at' => $this->updated_at,
-            'created_at' => $this->created_at,
         ];
     }
 }
