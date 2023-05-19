@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->string('serial_number')->unique();
             $table->date('manufacture_date');
             $table->integer('item_id');
-            $table->integer('supplier_id');
             $table->timestamps();
         });
     }

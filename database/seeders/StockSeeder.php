@@ -16,7 +16,7 @@ class StockSeeder extends Seeder
     public function run(): void
     {
 
-        // $stock = Stock::all();
+        // select all stocks
         $item = Item::first();
         $user_group = UserGroup::first();
         $supplier = Supplier::first();
@@ -35,7 +35,6 @@ class StockSeeder extends Seeder
                         'serial_number' => 'SRN 9659658',
                         'manufacture_date' => '2023-07-20',
                         'item_id' => $item->getKey(),
-                        'supplier_id' => $supplier->getKey(),
                     ]
                 ] //end here
                 , [
@@ -50,7 +49,6 @@ class StockSeeder extends Seeder
                         'serial_number' => 'SRN 987954',
                         'manufacture_date' => '2023-09-21',
                         'item_id' => $item->getKey(),
-                        'supplier_id' => $supplier->getKey(),
                     ]
                 ]
             ];
@@ -58,7 +56,7 @@ class StockSeeder extends Seeder
             foreach ($arrays as $array) {
                 $user = User::create($array['user']);
 
-                // array_push($array->employee, ['user_id' => $user->getKey]);
+                // to get the key
 
                 $existing_array = $array['stock'];
                 $new_array = ['code' => $user->getKey()];
