@@ -6,7 +6,6 @@ use App\Helpers\Helper;
 use App\Http\Requests\StockFormRequest;
 use App\Http\Resources\StockResource;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Stock;
 
 use Exception;
@@ -19,8 +18,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        //all record
-        $stocks = Stock::all(); //select all from stock;
+        //all records from stock
+        $stocks = Stock::all();
 
         //return $stock;
         return StockResource::collection($stocks); // for 2 or more records
@@ -42,7 +41,6 @@ class StockController extends Controller
                 'serial_number' => $request->serial_number,
                 'manufacture_date' => $request->manufacture_date,
                 'item_id' => $request->item_id,
-                'supplier_id' => $request->supplier_id
             ]);
         } catch (\Exception $e) {
 
@@ -74,20 +72,12 @@ class StockController extends Controller
     {
         try {
             //update stock records
-            // $stock = Stock::find($id);
-            // dd($stock);
-
-            $request->validate([
-                'code' => 'unique:stocks,code',
-                'serial_number' => 'unique:stocks,serial_number',
-            ]);
             
             $stock = tap($stock)->update([
                 'code' => $request->code,
                 'serial_number' => $request->serial_number,
                 'manufacture_date' => $request->manufacture_date,
                 'item_id' => $request->item_id,
-                'supplier_id' => $request->supplier_id,
             ]);
 
             return new StockResource($stock);

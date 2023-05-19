@@ -14,18 +14,7 @@ class Stock extends Model
         'serial_number',
         'manufacture_date',
         'item_id',
-        'supplier_id',
     ];
-
-    /**
-     * associate post to supplier
-     *
-     * @return object
-     */
-    public function supplier()
-    {
-        return $this->belongsTo(Supplier::class );
-    }
 
     /**
      * get the list of items associated to Post
