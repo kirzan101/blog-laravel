@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->date('manufacture_date');
             $table->integer('item_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

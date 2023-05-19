@@ -7,6 +7,7 @@ use App\Http\Requests\StockFormRequest;
 use App\Http\Resources\StockResource;
 use Illuminate\Http\Request;
 use App\Models\Stock;
+use App\Models\Item;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -91,6 +92,27 @@ class StockController extends Controller
      */
     public function destroy(Stock $stock)
     {
+        DB::beginTransaction();
+        try {
+            //delete record
+            $item = Item::find($stock->item_id);
+
+            $stock->delete();
+            $item->delete();
+        }catch (\Exception $e){
+            //throw $th;
+        DB::rollBack();
+
+            return response()->json([
+                'message' => 'Something Went Wrong on deletion'
+            ], 500);
+        }
+
+        DB::commit();
+
+        return response()->json([
+            'message' => 'Successfully Deleted.'
+        ], 204);
         //
     }
 }
