@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Accountability extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'emloyee_id',
         'item_id',

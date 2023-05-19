@@ -19,11 +19,15 @@ class Item extends Model
 
     public function supplier()
     {
-        return $this->belongsTo(supplier::class);
+        return $this->belongsTo(Supplier::class);
     }
 
     public function department()
     {
-        return $this->belongsTo(department::class);
+        return $this->belongsTo(Department::class);
+    }
+    public function stocks()
+    {
+        return $this->belongsTo(Stocks::class);
     }
 }

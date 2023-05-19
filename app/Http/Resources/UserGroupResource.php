@@ -21,7 +21,7 @@ class UserGroupResource extends JsonResource
         'code' => $this->code,
         'description' => $this->description,
         'department' => new DepartmentResource($this->department),
-        'users' => $this->users,
+        'users' => UserResource::collection($this->users),
         'created_at' => $this->created_at,
         'updated_by' => $this->updated_at,
         //'comments' => $this->comments//CommentResource::collection($this->comments),
