@@ -6,7 +6,13 @@ use App\Http\Requests\AccountabilityFormRequest;
 use App\Http\Resources\AccountabilityResource;
 use Illuminate\Http\Request;
 use App\Models\Accountability;
+use App\Models\Department;
+use App\Models\Employee;
+use App\Models\Item;
+use App\Models\User;
 use Exception;
+use GuzzleHttp\Psr7\Message;
+use Illuminate\Support\Facades\DB;
 
 class AccountabilityController extends Controller
 {
@@ -62,9 +68,9 @@ class AccountabilityController extends Controller
         try
         {
             $accountability = tap($accountability)->update([
-                'employee_id' => $request->employee_id,
-                'item_id' => $request->item_id,
-                'department_id' => $request->department_id,
+                'employee_id' => $request->employee,
+                'item_id' => $request->item,
+                'department_id' => $request->department,
                 'status' => $request->status,
                 
             ]);
@@ -81,6 +87,27 @@ class AccountabilityController extends Controller
      */
     public function destroy(Accountability $accountability)
     {
-        //delete record
+        DB::beginTransaction();
+        try{
+            $employee = Employee::find($accountability->employee_id);   
+            $item = Item::find($accountability->item_id);   
+            $department = Department::find($accountability->department_id); 
+            
+            $accountability->delete();
+            $employee->delete();
+            $item->delete();
+            $department->delete();
+        } catch(\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Something Went Wrong on Deletion'
+            ], 500);
+        }
+        DB::commit();
+        return response()->json([
+            'message' => 'Successfully Deleted'
+        ], 204);
+    
+
     }
 }
