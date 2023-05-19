@@ -15,7 +15,7 @@ class Supplier extends Model
         'address',
         'contact_number'
     ];
-
+    
     /**
      * get the list of items associated supplier
      *
