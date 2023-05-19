@@ -16,7 +16,7 @@ class Supplier extends Model
     ];
 
     /**
-     * get the id associated to items
+     * get the items
      *
      * @return collections
      */
