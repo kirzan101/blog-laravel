@@ -87,6 +87,7 @@ class UserGroupController extends Controller
               $user = User::find($usergroup->user_id);
 
               $usergroup->delete();
+              $department->delete();
 
         } catch (\Exception $e){
             //throw $th;
