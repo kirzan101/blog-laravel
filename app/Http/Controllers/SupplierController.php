@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
