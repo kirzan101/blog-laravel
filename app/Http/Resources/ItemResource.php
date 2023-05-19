@@ -19,7 +19,7 @@ class ItemResource extends JsonResource
             'description' => $this->description,
             'brand' => $this->brand,
             'model' => $this->model,
-            'stocks' => new StockResource($this->stocks),
+            //'stocks' => new StockResource::collection($this->stocks),
             'department' => new DepartmentResource($this->department),
             'supplier' => new SupplierResource($this->supplier),
         ];
