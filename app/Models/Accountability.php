@@ -25,10 +25,6 @@ class Accountability extends Model
     }
     public function department()
     {
-<<<<<<< HEAD
         return $this->belongsTo(department::class);
-=======
-        return $this->hasMany(department::class);
->>>>>>> a0cdb98 (05/17/2023)
     }
 }
