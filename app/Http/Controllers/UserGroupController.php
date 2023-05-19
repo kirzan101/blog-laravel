@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\UserGroupFormRequest;
 use App\Http\Resources\UserGroupResource;
 use Illuminate\Http\Request;
 use App\Models\UserGroup;
+use App\Models\Department;
+use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class UserGroupController extends Controller
 {
@@ -76,8 +78,31 @@ class UserGroupController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(usergroup $usergroup)
     {
-        //delete record
+        DB::beginTransaction();
+        try{
+              //delete record
+              $department = Department::find($usergroup->department_id);
+              $user = User::find($usergroup->user_id);
+
+              $usergroup->delete();
+
+        } catch (\Exception $e){
+            //throw $th;
+            DB::rollback();
+
+            return response()->json([
+                'message' =>'Something went wrong on deletion'
+            ],500);
+        
+
+        DB::commit();
+
+        return response()->json([
+            'message' => 'Sucessfully Deleted.'
+        ],204);
+     
+    }
     }
 }
