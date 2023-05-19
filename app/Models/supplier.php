@@ -16,11 +16,11 @@ class Supplier extends Model
     ];
 
     /**
-     * get the list of comments associated to Post
+     * get the id associated to items
      *
      * @return collections
      */
-    public function item()
+    public function items()
     {
         return $this->hasMany(Item::class);
     }
