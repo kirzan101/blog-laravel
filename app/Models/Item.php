@@ -26,8 +26,9 @@ class Item extends Model
     {
         return $this->belongsTo(Department::class);
     }
+    
     public function stocks()
     {
-        return $this->belongsTo(Stocks::class);
+        return $this->hasMany(Stock::class);
     }
 }
