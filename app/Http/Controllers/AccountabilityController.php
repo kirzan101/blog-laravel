@@ -62,9 +62,9 @@ class AccountabilityController extends Controller
         try
         {
             $accountability = tap($accountability)->update([
-                'employee_id' => $request->employee,
-                'item_id' => $request->item,
-                'department_id' => $request->department,
+                'employee_id' => $request->employee_id,
+                'item_id' => $request->item_id,
+                'department_id' => $request->department_id,
                 'status' => $request->status,
                 
             ]);
