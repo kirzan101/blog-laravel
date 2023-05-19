@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id');
             $table->string('description');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('department_id')->references('id')->on('departments');
         });
