@@ -10,18 +10,18 @@ class Accountability extends Model
     use HasFactory;
 
     protected $fillable = [
-        'emloyee_id',
+        'employee_id',
         'item_id',
         'department_id',
         'status'
     ];
-    public function employees()
+    public function employee()
     {
-        return $this->hasMany(Employee::class);
+        return $this->belongsTo(Employee::class);
     }
     public function item()
     {
-        return $this->hasMany(item::class);
+        return $this->belongsTo(item::class);
     }
     public function department()
     {
