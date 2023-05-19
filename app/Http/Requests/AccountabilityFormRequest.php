@@ -23,7 +23,7 @@ class AccountabilityFormRequest extends FormRequest
     {
         return [
             'employee_id' => 'required|exists:employees,id',
-            'item_id' => 'required|exists:item,id',           
+            'item_id' => 'required|exists:items,id',           
             'department_id' => 'required|exists:department,id',           
             'status' => 'required|max:255',
 

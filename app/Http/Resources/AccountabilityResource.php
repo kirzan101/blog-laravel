@@ -16,9 +16,9 @@ class AccountabilityResource extends JsonResource
     {
         return [
             'id' => (int) $this->getKey(),
-            'employee_id' => (int) $this->getKey(),
-            'item_id' => (int) $this->getKey(),
-            'department_id' => (int) $this->getKey(),
+            'employee_id' => new EmployeeResource($this->employee),
+            'item_id' => new ItemResource($this->item),
+            'department_id' => new DepartmentResource($this->department),
             'status' => $this->status,
         ];
     }

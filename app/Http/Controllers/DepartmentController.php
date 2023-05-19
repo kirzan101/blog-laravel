@@ -6,7 +6,9 @@ use App\Http\Requests\DepartmentFormRequest;
 use App\Http\Resources\DepartmentResource;
 use Illuminate\Http\Request;
 use App\Models\Department;
-
+use App\Models\Employee;
+use PhpParser\Node\Stmt\Catch_;
+use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
 {
@@ -20,6 +22,7 @@ class DepartmentController extends Controller
         
         // return $posts;
         return DepartmentResource::collection($departments); // for 2 or more records
+       
     }
 
     /**
@@ -81,8 +84,26 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Department $stock)
+    public function destroy(Department $department)
     {
+        DB::beginTransaction();
+        try{
         //delete record
+        $department= Department::find($department->id);
+
+        $department->delete();
+
+        }catch(\Exception $e){
+            //throw $th
+        DB::rollback();
+        
+       return response()->json([
+        'message'=>'Something Went wrong on Deletion'
+       ],500);
     }
-}
+    DB::commit();
+     return response()->json([
+        'message' =>'Successfully Deleted.'
+     ], 204);
+    }
+    }   

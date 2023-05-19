@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('department_id');
             $table->integer('supplier_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
     /**

@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Helper;
 use App\Http\Requests\SupplierFormRequest;
 use App\Http\Resources\SupplierResource;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
+
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class SupplierController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -76,8 +81,29 @@ class SupplierController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Supplier $supplier)
     {
-        //delete record
+        DB::beginTransaction();
+        try {
+            //delete record
+            $item = Item::find($supplier->item_id);
+
+            $supplier->delete();
+        } catch (\Exception $e) {
+            //throw $th
+            DB::rollback();
+
+            return response()->json([
+                'message' => 'Something went wrong on deletion'
+            ], 500);
+        }
+
+        DB::commit();
+
+        return response()->json([
+            'message' => 'Successfully Deleted.'
+        ], 204);
     }
+    //delete record
+
 }
