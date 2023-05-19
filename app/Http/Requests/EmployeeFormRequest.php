@@ -26,16 +26,12 @@ class EmployeeFormRequest extends FormRequest
         //dd($employee);
         return [
             'first_name' => 'required|min:2',
-            'middle_name' => 'required|min:2',
+            'middle_name' => 'nullable|min:2',
             'last_name' => 'required|min:2',
             'contact_number' => 'required|min:2',
             'position' => 'required|min:2',
             'department_id' => 'required',
-<<<<<<< HEAD
-            'email' => 'required|email', //|unique:users,email,'.$this->employee->user_id,
-=======
-            'email' => 'required|email|unique:users,email,'.$this->employee->user_id,
->>>>>>> 50180f0 (adjust update employee validation)
+            'email' => 'required|email',
             'password' => 'required|min:8',
             'user_group_id' => 'required|exists:user_groups,id'
             // 'user_id' => 'required',

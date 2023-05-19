@@ -21,6 +21,7 @@ class EmployeeController extends Controller
         //all record
         $employees = Employee::all(); //select * from posts;
 
+
         // return $posts;
         return EmployeeResource::collection($employees); // for 2 or more records
     }
@@ -137,7 +138,6 @@ class EmployeeController extends Controller
 
             $employee->delete();
             $user->delete();
-            
         } catch (\Exception $e) {
             //throw $th;
             DB::rollBack();

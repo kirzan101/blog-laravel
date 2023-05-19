@@ -23,8 +23,7 @@ class EmployeeResource extends JsonResource
         'contact_number' => $this->contact_number,
         'position' => $this->position,
         'department' => new DepartmentResource ($this->department),
-        'user_id' => $this->user_id,
-        //'comments' => $this->comments//CommentResource::collection)$this->comments),
+        'user' => new UserResource ($this->user),
         ];
     }
 }
