@@ -16,7 +16,7 @@ class Supplier extends Model
     ];
 
     /**
-     * get the items
+     * get the list of items associated supplier
      *
      * @return collections
      */
