@@ -21,7 +21,6 @@ class SupplierResource extends JsonResource
             'contact_number' => $this->contact_number,
             'created_at' => $this->created_at,
             'updated_by' => $this->updated_at,
-            'items' => ItemResource::collection($this->items)
         ];
     }
 }
