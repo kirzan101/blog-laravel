@@ -19,7 +19,6 @@ class StockSeeder extends Seeder
         // select all stocks
         $item = Item::first();
         $user_group = UserGroup::first();
-        $supplier = Supplier::first();
 
             $arrays = [
                 [
