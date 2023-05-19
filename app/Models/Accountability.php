@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Accountability extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'emloyee_id',
         'item_id',
@@ -25,10 +25,6 @@ class Accountability extends Model
     }
     public function department()
     {
-<<<<<<< HEAD
         return $this->belongsTo(department::class);
-=======
-        return $this->hasMany(department::class);
->>>>>>> a0cdb98 (05/17/2023)
     }
 }
