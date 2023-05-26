@@ -31,4 +31,14 @@ class Item extends Model
     {
         return $this->hasMany(Stock::class);
     }
+
+    /**
+     * return brand and model in one string
+     *
+     * @return string
+     */
+    public function getItemFull()
+    {
+        return sprintf('%s | %s', $this->brand, $this->model);
+    }
 }

@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DepartmentFormRequest;
-use App\Http\Resources\DepartmentResource;
-use Illuminate\Http\Request;
 use App\Models\Department;
-use App\Models\Employee;
-use PhpParser\Node\Stmt\Catch_;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
@@ -17,12 +13,17 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //all record
-        $departments = Department::all();//select * from department;
-        
-        // return $posts;
-        return DepartmentResource::collection($departments); // for 2 or more records
-       
+        $departments = Department::all();
+
+        return view('departments.index', compact('departments'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('departments.create');
     }
 
     /**
@@ -30,21 +31,14 @@ class DepartmentController extends Controller
      */
     public function store(DepartmentFormRequest $request)
     {
-
-        // $request->validate([
-
-        //     'description' => 'required|max:255',
-        // ]);
-
-        // create record`
-        $department = Department::create([
+        Department::create([
             'name' => $request->name,
             'code' => $request->code,
             'contact_number' => $request->contact_number,
             'description' => $request->description
         ]);
 
-        return new DepartmentResource($department);
+        return redirect('/departments')->with('message', 'Successfully Created');
     }
 
     /**
@@ -52,9 +46,15 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        // dd($department);
-        // return $post;
-        return new DepartmentResource($department); //for 1 only
+        return view('departments.show', compact('department'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Department $department)
+    {
+        return view('departments.edit', compact('department'));
     }
 
     /**
@@ -62,23 +62,14 @@ class DepartmentController extends Controller
      */
     public function update(DepartmentFormRequest $request, Department $department)
     {
-        try
-        {
-            // dd($request);
-            // $departments = Department::find($id);
+        $department = tap($department)->update([
+            'name' => $request->name,
+            'code' => $request->code,
+            'contact_number' => $request->contact_number,
+            'description' => $request->description
+        ]);
 
-            $department = tap($department)->update([
-                'name' => $request->name,
-                'code' => $request->code,
-                'contact_number' => $request->contact_number,
-                'description' => $request->description,
-            ]);
-
-            return new DepartmentResource($department);
-        } catch(\Exception $e)
-        {
-            return ['error' => 'has error - ' . $e];
-        }
+        return redirect('/departments')->with('message', 'Successfully Updated');
     }
 
     /**
@@ -86,24 +77,8 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        DB::beginTransaction();
-        try{
-        //delete record
-        $department= Department::find($department->id);
-
         $department->delete();
 
-        }catch(\Exception $e){
-            //throw $th
-        DB::rollback();
-        
-       return response()->json([
-        'message'=>'Something Went wrong on Deletion'
-       ],500);
+        redirect('/departments')->with('message', 'Successfully Deleted');
     }
-    DB::commit();
-     return response()->json([
-        'message' =>'Successfully Deleted.'
-     ], 204);
-    }
-    }   
+}

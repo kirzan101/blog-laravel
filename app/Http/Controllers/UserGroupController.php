@@ -1,14 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\UserGroupFormRequest;
-use App\Http\Resources\UserGroupResource;
-use Illuminate\Http\Request;
-use App\Models\UserGroup;
+
 use App\Models\Department;
-use App\Models\User;
-use Exception;
-use Illuminate\Support\Facades\DB;
+use App\Models\UserGroup;
+use Illuminate\Http\Request;
 
 class UserGroupController extends Controller
 {
@@ -17,32 +13,34 @@ class UserGroupController extends Controller
      */
     public function index()
     {
-        //all record
-        $usergroups = UserGroup::all(); //select * from usergroup;
+        $usergroups = UserGroup::all();
 
-        // return $posts;
-        return UserGroupResource::collection($usergroups); // for 2 or more records
+        return view('usergroups.index', compact('usergroups'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $departments = Department::all();
+
+        return view('usergroups.create', compact('departments'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserGroupFormRequest $request)
+    public function store(Request $request)
     {
-
-        // $request->validate([
-        //     'description' => 'required|max:255',
-        // ]);
-
-        // create record`
-        $usergroup = UserGroup::create([
+        UserGroup::create([
             'name' => $request->name,
             'code' => $request->code,
             'description' => $request->description,
             'department_id' => $request->department_id
         ]);
 
-        return new UserGroupResource($usergroup);
+        return redirect('/usergroups')->with('message', 'Successfully created');
     }
 
     /**
@@ -50,59 +48,42 @@ class UserGroupController extends Controller
      */
     public function show(UserGroup $usergroup)
     {
-        // return $usergroup;
-        return new UserGroupResource($usergroup); //for 1 only
+        $departments = Department::all();
+        return view('usergroups.show', compact('usergroup', 'departments'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(UserGroup $usergroup)
+    {
+        $departments = Department::all();
+
+        return view('usergroups.edit', compact('usergroup', 'departments'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserGroupFormRequest $request, UserGroup $usergroup)
+    public function update(Request $request, UserGroup $usergroup)
     {
-        try {
-            //$usergroup = UserGroup::find($id);
+        $user_group = tap($usergroup)->update([
+            'name' => $request->name,
+            'code' => $request->code,
+            'description' => $request->description,
+            'department_id' => $request->department_id
+        ]);
 
-            $usergroup = tap($usergroup)->update([
-                'name' => $request->name,
-                'code' => $request->code,
-                'description' => $request->description,
-                'department_id' => $request->department_id
-            ]);
-
-            return new UserGroupResource($usergroup);
-        } catch (\Exception $e) {
-            return ['error' => 'has error - ' . $e];
-        }
+        return redirect('/usergroups')->with('message', 'Successfully Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(usergroup $usergroup)
+    public function destroy(UserGroup $usergroup)
     {
-        DB::beginTransaction();
-        try{
-              //delete record
-              $department = Department::find($usergroup->department_id);
-              $user = User::find($usergroup->user_id);
+        $usergroup->delete();
 
-              $usergroup->delete();
-
-        } catch (\Exception $e){
-            //throw $th;
-            DB::rollback();
-
-            return response()->json([
-                'message' =>'Something went wrong on deletion'
-            ],500);
-        
-
-        DB::commit();
-
-        return response()->json([
-            'message' => 'Sucessfully Deleted.'
-        ],204);
-     
-    }
+        return redirect('/usergroups')->with('message', 'Successfully Deleted');
     }
 }

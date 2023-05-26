@@ -40,4 +40,9 @@ class Employee extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getName()
+    {
+        return sprintf('%s, %s', $this->last_name, $this->first_name);
+    }
 }
