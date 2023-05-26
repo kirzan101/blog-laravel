@@ -2,49 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Helper;
-use App\Http\Requests\SupplierFormRequest;
-use App\Http\Resources\SupplierResource;
-use App\Models\Item;
-use Illuminate\Http\Request;
 use App\Models\Supplier;
-
-use Exception;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //all record
-        $suppliers = Supplier::all(); //select * from posts;
+        $suppliers = Supplier::all();
 
-        // return $posts;
-        return SupplierResource::collection($suppliers); // for 2 or more records
+        return view('suppliers.index', compact('suppliers'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('suppliers.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SupplierFormRequest $request)
+    public function store(Request $request)
     {
-
-        // $request->validate([
-        //     'description' => 'required|max:255',
-        // ]);
-
-        // create record`
-        $supplier = Supplier::create([
+        Supplier::create([
             'name' => $request->name,
             'address' => $request->address,
             'contact_number' => $request->contact_number,
         ]);
 
-        return new SupplierResource($supplier);
+        return redirect('/suppliers')->with('message', 'Successfully created');
     }
 
     /**
@@ -52,8 +44,15 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        // return $post;
-        return new SupplierResource($supplier); //for 1 only
+        return view('suppliers.show', compact('supplier'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Supplier $supplier)
+    {
+        return view('suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -61,49 +60,22 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        try {
-            //   $supplier = Supplier::find($id);
+        $supplier = tap($supplier)->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'contact_number' => $request->contact_number,
+        ]);
 
-            $supplier = tap($supplier)->update([
-                'name' => $request->name,
-                'address' => $request->address,
-                'contact_number' => $request->contact_number,
-            ]);
-
-            return new SupplierResource($supplier);
-        } catch (\Exception $e) {
-            return ['error' => 'has error - ' . $e];
-        }
+        return redirect('/suppliers')->with('message', 'Successfully updated');
     }
-
-
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Supplier $supplier)
     {
-        DB::beginTransaction();
-        try {
-            //delete record
-            $item = Item::find($supplier->item_id);
+        $supplier->delete();
 
-            $supplier->delete();
-        } catch (\Exception $e) {
-            //throw $th
-            DB::rollback();
-
-            return response()->json([
-                'message' => 'Something went wrong on deletion'
-            ], 500);
-        }
-
-        DB::commit();
-
-        return response()->json([
-            'message' => 'Successfully Deleted.'
-        ], 204);
+        return redirect('/suppliers')->with('message', 'Successfully Deleted.');
     }
-    //delete record
-
 }
