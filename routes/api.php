@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ItemController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\UserGroupController;
-use App\Http\Controllers\AccountabilityController;
-use App\Http\Controllers\StockController;
-use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\ItemController;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\SupplierController;
+use App\Http\Controllers\Api\UserGroupController;
+use App\Http\Controllers\Api\AccountabilityController;
+use App\Http\Controllers\Api\StockController;
+use App\Http\Controllers\Api\DepartmentController;
+use App\Http\Controllers\Api\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
