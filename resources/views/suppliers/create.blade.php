@@ -9,7 +9,7 @@
                 <div class="col-md-6 mb-6">
                     <label for="name">Name</label>
                     <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name"
-                        name="name" placeholder="Name">
+                        name="name" placeholder="Name" value="{{ old('name') }}">
                     @if ($errors->has('name'))
                         <div class="invalid-feedback">
                             {{ $errors->first('name') }}
@@ -19,7 +19,7 @@
                 <div class="col-md-6 mb-6">
                     <label for="contact_no">Contact No.</label>
                     <input type="text" class="form-control {{ $errors->has('contact_number') ? 'is-invalid' : '' }}"
-                        id="contact_no" name="contact_number" placeholder="Contact No.">
+                        id="contact_no" name="contact_number" placeholder="Contact No." value="{{ old('contact_number') }}">
                     @if ($errors->has('contact_number'))
                         <div class="invalid-feedback">
                             {{ $errors->first('contact_number') }}
@@ -31,7 +31,7 @@
                 <div class="col-md-12 mb-3">
                     <label for="address">Address</label>
                     <input type="text" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"
-                        id="address" name="address" placeholder="Address">
+                        id="address" name="address" placeholder="Address" value="{{ old('address') }}">
                     @if ($errors->has('address'))
                         <div class="invalid-feedback">
                             {{ $errors->first('address') }}

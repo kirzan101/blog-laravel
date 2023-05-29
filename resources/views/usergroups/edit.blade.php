@@ -2,10 +2,11 @@
 
 @section('content')
     <div>
-        <h3>Show User Group | <a href="/usergroups" class="btn btn-primary">Return</a></h3>
+        <h3>Edit User Group | <a href="/usergroups" class="btn btn-primary">Return</a></h3>
         <form method="POST" action="/usergroups/{{ $usergroup->id }}">
             @method('PUT')
             @csrf
+            <input type="text" name="id" value="{{ $usergroup->id }}" hidden>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="name">Name</label>
@@ -30,7 +31,7 @@
                 <div class="col-md-4 mb-3">
                     <label for="model">Department</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="department" name="department_id" >
+                        <select class="custom-select {{ $errors->has('department_id' ? 'is-invalid' : '') }}" id="department" name="department_id" >
                             <option value="">-- select --</option>
                             @foreach ($departments as $department)
                                 <option value="{{$department->id }}"

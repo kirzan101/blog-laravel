@@ -25,4 +25,17 @@ class ItemFormRequest extends FormRequest
             'supplier_id' => 'required|exists:suppliers,id',
         ];
     }
+
+    /**
+     * Set custom validation message
+     *
+     * @return array
+     */
+    public function messages() : array
+    {
+        return [
+            'department_id.required' => 'The department field is required.',
+            'supplier_id.required' => 'The supplier field is required.',
+        ];
+    }
 }

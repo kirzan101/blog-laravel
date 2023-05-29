@@ -6,6 +6,7 @@
         <form method="POST" action="/suppliers/{{ $supplier->id }}">
             @method('PUT')
             @csrf
+            <input type="text" name="id" value="{{ $supplier->id }}">
             <div class="form-row">
                 <div class="col-md-6 mb-6">
                     <label for="name">Name</label>

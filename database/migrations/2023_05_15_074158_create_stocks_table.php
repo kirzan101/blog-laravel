@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('serial_number')->unique();
+            $table->string('code'); //removed ->unique() for soft deletes, unique will be validated in form request
+            $table->string('serial_number'); //removed ->unique() for soft deletes, unique will be validated in form request
             $table->date('manufacture_date');
             $table->integer('item_id');
             $table->timestamps();
