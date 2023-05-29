@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserGroupFormRequest;
 use App\Models\Department;
 use App\Models\UserGroup;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class UserGroupController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserGroupFormRequest $request)
     {
         UserGroup::create([
             'name' => $request->name,
@@ -65,7 +66,7 @@ class UserGroupController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserGroup $usergroup)
+    public function update(UserGroupFormRequest $request, UserGroup $usergroup)
     {
         $user_group = tap($usergroup)->update([
             'name' => $request->name,

@@ -33,10 +33,13 @@
                 <div class="col-md-6 mb-6">
                     <label for="brand">Supplier</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="supplier" name="supplier_id" d>
+                        <select class="custom-select {{ $errors->has('supplier_id') ? 'is-invalid' : '' }}" id="supplier"
+                            name="supplier_id" d>
                             <option value="">-- select --</option>
                             @foreach ($suppliers as $supplier)
-                                <option value="{{ $supplier->id }}" {{ ($supplier->id === $item->supplier_id) ? 'selected' : '' }}>{{ $supplier->name }}</option>
+                                <option value="{{ $supplier->id }}"
+                                    {{ (int) old('supplier_id') === $supplier->id || $supplier->id === $item->supplier_id ? 'selected' : '' }}>
+                                    {{ $supplier->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -49,10 +52,13 @@
                 <div class="col-md-6 mb-6">
                     <label for="model">Department</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="department" name="department_id" d>
+                        <select class="custom-select {{ $errors->has('department_id') ? 'is-invalid' : '' }}"
+                            id="department" name="department_id" d>
                             <option value="">-- select --</option>
                             @foreach ($departments as $department)
-                                <option value="{{ $department->id }}" {{ ($department->id === $item->department_id) ? 'selected' : '' }}>{{ $department->name }}</option>
+                                <option value="{{ $department->id }}"
+                                    {{ (int) old('department_id') === $department->id || $department->id === $item->department_id ? 'selected' : '' }}>
+                                    {{ $department->name }}</option>
                             @endforeach
                         </select>
                     </div>

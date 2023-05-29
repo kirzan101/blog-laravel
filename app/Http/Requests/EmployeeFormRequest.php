@@ -30,11 +30,25 @@ class EmployeeFormRequest extends FormRequest
             'last_name' => 'required|min:2',
             'contact_number' => 'required|min:2',
             'position' => 'required|min:2',
-            'department_id' => 'required',
+            'department_id' => 'required|exists:departments,id',
             'email' => 'required|email', //|unique:users,email,'.$this->employee->user_id,
-            'password' => 'required|min:8',
+            'password' => 'required_if:id,null', // move this in store method of employee controller
             'user_group_id' => 'required|exists:user_groups,id'
             // 'user_id' => 'required',
+        ];
+    }
+
+    /**
+     * Set custom validation message
+     *
+     * @return array
+     */
+    public function messages() : array
+    {
+        return [
+            'department_id.required' => 'The department field is required.',
+            'user_group_id.required' => 'The user group field is required.',
+            'password.required_if' => 'The password field is required.',
         ];
     }
 }

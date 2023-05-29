@@ -7,6 +7,7 @@
             @method('PUT')
             @csrf
             <input type="text" name="item_id" value="{{ $stock->item_id }}" hidden>
+            <input type="text" name="id" value="{{ $stock->id }}" hidden>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="serial_number">Serial Number</label>

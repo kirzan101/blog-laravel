@@ -9,7 +9,7 @@
                 <div class="col-md-4 mb-3">
                     <label for="name">Name</label>
                     <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name"
-                        name="name" value="{{ old('name') ? old('name') : '' }}" placeholder="Name" >
+                        name="name" value="{{ old('name') }}" placeholder="Name">
                     @if ($errors->has('name'))
                         <div class="invalid-feedback">
                             {{ $errors->first('name') }}
@@ -19,7 +19,7 @@
                 <div class="col-md-4 mb-3">
                     <label for="code">Code</label>
                     <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" id="code"
-                        name="code" value="{{ old('code') ? old('code') : '' }}" placeholder="Code">
+                        name="code" value="{{ old('code') }}" placeholder="Code">
                     @if ($errors->has('code'))
                         <div class="invalid-feedback">
                             {{ $errors->first('code') }}
@@ -29,29 +29,29 @@
                 <div class="col-md-4 mb-3">
                     <label for="model">Department</label>
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="department" name="department_id" >
+                        <select class="custom-select {{ $errors->has('department_id') ? 'is-invalid' : '' }}"
+                            id="department" name="department_id">
                             <option value="">-- select --</option>
                             @foreach ($departments as $department)
-                                <option value="{{$department->id }}"
+                                <option value="{{ $department->id }}"
                                     {{ old('department_id') === $department->id ? 'selected' : '' }}>
-                                    {{$department->name }}</option>
+                                    {{ $department->name }}</option>
                             @endforeach
                         </select>
+                        @if ($errors->has('department_id'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('department_id') }}
+                            </div>
+                        @endif
                     </div>
-                    @if ($errors->has('department_id'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('department_id') }}
-                        </div>
-                    @endif
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
                     <label for="description">Description</label>
                     <input type="text" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                        id="description" name="description"
-                        value="{{ old('description') ? old('description') : '' }}"
-                        placeholder="Description" >
+                        id="description" name="description" value="{{ old('description') }}"
+                        placeholder="Description">
                     @if ($errors->has('description'))
                         <div class="invalid-feedback">
                             {{ $errors->first('description') }}

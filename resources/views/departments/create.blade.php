@@ -9,7 +9,7 @@
                 <div class="col-md-4 mb-3">
                     <label for="name">Name</label>
                     <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name"
-                        name="name" placeholder="Name">
+                        name="name" placeholder="Name" value="{{ old('name') }}">
                     @if ($errors->has('name'))
                         <div class="invalid-feedback">
                             {{ $errors->first('name') }}
@@ -19,7 +19,7 @@
                 <div class="col-md-4 mb-3">
                     <label for="code">Code</label>
                     <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" id="code"
-                        name="code" placeholder="Code">
+                        name="code" placeholder="Code" value="{{ old('code') }}">
                     @if ($errors->has('code'))
                         <div class="invalid-feedback">
                             {{ $errors->first('code') }}
@@ -29,7 +29,7 @@
                 <div class="col-md-4 mb-3">
                     <label for="contact_no">Contact No.</label>
                     <input type="text" class="form-control {{ $errors->has('contact_number') ? 'is-invalid' : '' }}"
-                        id="contact_no" name="contact_number" placeholder="Contact No.">
+                        id="contact_no" name="contact_number" placeholder="Contact No." value="{{ old('contact_number') }}">
                     @if ($errors->has('contact_number'))
                         <div class="invalid-feedback">
                             {{ $errors->first('contact_number') }}
@@ -41,7 +41,7 @@
                 <div class="col-md-12 mb-3">
                     <label for="description">Description</label>
                     <input type="text" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                        id="description" name="description" placeholder="Description">
+                        id="description" name="description" placeholder="Description" value="{{ old('description') }}">
                     @if ($errors->has('description'))
                         <div class="invalid-feedback">
                             {{ $errors->first('description') }}

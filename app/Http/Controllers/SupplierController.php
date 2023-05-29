@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SupplierFormRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class SupplierController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SupplierFormRequest $request)
     {
         Supplier::create([
             'name' => $request->name,
@@ -58,7 +59,7 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(SupplierFormRequest $request, Supplier $supplier)
     {
         $supplier = tap($supplier)->update([
             'name' => $request->name,

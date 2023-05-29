@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
         @if (env('APP_NAME') != null)
             {{ env('APP_NAME') }}
         @else
@@ -13,8 +13,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item {{ Request::is('employee') ? 'active' : '' }}">
-                <a class="nav-link" href="/employee">Employee <span class="sr-only">(current)</span></a>
+            <li class="nav-item {{ Request::is('employees') ? 'active' : '' }}">
+                <a class="nav-link" href="/employees">Employees <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {{ Request::is('departments') ? 'active' : '' }}">
                 <a class="nav-link" href="/departments">Departments <span class="sr-only">(current)</span></a>
@@ -32,5 +32,22 @@
                 <a class="nav-link" href="/suppliers">Suppliers <span class="sr-only">(current)</span></a>
             </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+            {{-- <p class="m-2">Test</p>
+            <button class="btn btn-danger my-2 my-sm-0" type="submit">Log out</button> --}}
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hi! User
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Update password</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </form>
     </div>
 </nav>

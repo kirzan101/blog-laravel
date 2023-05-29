@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccountabilityFormRequest;
 use App\Models\Accountability;
 use App\Models\Department;
 use App\Models\Employee;
@@ -35,7 +36,7 @@ class AccountabilityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AccountabilityFormRequest $request)
     {
         Accountability::create([
             'employee_id' => $request->employee_id,
@@ -74,7 +75,7 @@ class AccountabilityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Accountability $accountability)
+    public function update(AccountabilityFormRequest $request, Accountability $accountability)
     {
         $accountability = tap($accountability)->update([
             'employee_id' => $request->employee_id,

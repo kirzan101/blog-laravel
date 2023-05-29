@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code')->unique();
+            $table->string('code'); //removed ->unique() for soft deletes, unique will be validated in form request
             $table->unsignedBigInteger('department_id');
             $table->string('description');
             $table->timestamps();
