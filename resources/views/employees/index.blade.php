@@ -11,7 +11,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Position</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Username</th>
                     <th scope="col">Department</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -22,7 +22,7 @@
                         <th>{{ $employee->id }}</th>
                         <td>{{ $employee->getName() }}</td>
                         <td>{{ $employee->position }}</td>
-                        <td>{{ $employee->user->email }}</td>
+                        <td>{{ $employee->user->username }}</td>
                         <td>{{ $employee->department->code }}</td>
                         <td>
                             <a href="/employees/{{ $employee->id }}" class="btn btn-info">Show</a>
